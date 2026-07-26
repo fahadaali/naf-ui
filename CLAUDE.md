@@ -161,6 +161,7 @@ Use the shared formatting library. Never format inline.
 - Currency in interfaces: the official Saudi Riyal symbol `U+20C1`, rendered by `Money` from `naf-currency`. Never the private-use `U+E900`, never the old `﷼` (U+FDFC), never typed into a string by hand.
 - Currency in print and PDF: `12,400.00 ر.س`. Those files may be opened by software that does not load the symbol font, and an empty box is worse than an abbreviation. The same fallback appears automatically in the interface if the font fails to load.
 - The symbol's height matches the height of the digits beside it, its clear space is a third of that height, and its direction follows the text. All three come from `naf-currency` — do not restyle it locally.
+- The symbol font is pinned exactly, like Lucide. The height correction factor in `naf-currency.css` is measured against a specific release — ink height 62 against 73 for a digit in `@emran-alhaddad/saudi-riyal-font@1.1.0`. **Upgrading the package requires re-measuring and updating the factor. Never raise the pin without it.**
 - Time: 24-hour
 - Judicial dates — hearings, deadlines, statutory periods — show Gregorian followed by Hijri in parentheses. Invoices and internal timestamps stay Gregorian.
 - Every number, date and amount wrapped in a direction-isolating element
