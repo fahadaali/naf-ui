@@ -2,13 +2,13 @@
 
 import * as React from "react"
 import {
-  AlertTriangle,
-  CheckCircle2,
+  CircleCheck,
+  CircleX,
   Clock,
   Info,
   Save,
   Trash2,
-  XCircle,
+  TriangleAlert,
 } from "lucide-react"
 
 import { Alert, AlertDescription, AlertTitle } from "@/registry/naf/ui/alert"
@@ -128,7 +128,7 @@ function InputBlock() {
             aria-describedby="naf-email-error"
           />
           <p id="naf-email-error" className="flex items-center gap-1.5 text-sm text-destructive">
-            <XCircle className="size-4 shrink-0" aria-hidden="true" />
+            <CircleX className="size-4 shrink-0" aria-hidden="true" />
             أدخل بريداً إلكترونياً صحيحاً
           </p>
         </div>
@@ -254,7 +254,7 @@ function AlertBlock() {
   return (
     <div className="flex flex-col gap-4">
       <Alert variant="success">
-        <CheckCircle2 aria-hidden="true" />
+        <CircleCheck aria-hidden="true" />
         <div className="flex flex-col gap-1">
           <AlertTitle>تم اعتماد المستند</AlertTitle>
           <AlertDescription>
@@ -284,7 +284,7 @@ function AlertBlock() {
       </Alert>
 
       <Alert variant="destructive">
-        <AlertTriangle aria-hidden="true" />
+        <TriangleAlert aria-hidden="true" />
         <div className="flex flex-col gap-1">
           <AlertTitle>تعذّر رفع المرفق</AlertTitle>
           <AlertDescription>
@@ -303,7 +303,7 @@ const INVOICES = [
     date: "2026/07/12",
     amount: "12,400.00 ر.س",
     status: "معتمد",
-    icon: CheckCircle2,
+    icon: CircleCheck,
     tone: "text-success",
   },
   {
@@ -321,7 +321,7 @@ const INVOICES = [
     date: "2026/07/21",
     amount: "23,900.00 ر.س",
     status: "مرفوض",
-    icon: XCircle,
+    icon: CircleX,
     tone: "text-destructive",
   },
   {

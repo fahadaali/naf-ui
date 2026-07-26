@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock, Info, XCircle } from "lucide-react"
+import { CircleCheck, CircleX, Clock, Info } from "lucide-react"
 
 import { Section } from "./section"
 
@@ -12,7 +12,7 @@ const STATUSES = [
   {
     label: "معتمد",
     token: "success",
-    icon: CheckCircle2,
+    icon: CircleCheck,
     surface: "bg-success text-success-foreground",
     subtle: "border-success/30 bg-success/10 text-success",
   },
@@ -33,7 +33,7 @@ const STATUSES = [
   {
     label: "مرفوض",
     token: "destructive",
-    icon: XCircle,
+    icon: CircleX,
     surface: "bg-destructive text-destructive-foreground",
     subtle: "border-destructive/30 bg-destructive/10 text-destructive",
   },
