@@ -175,7 +175,26 @@ Use the shared formatting library. Never format inline.
 
 **The version tag is a contract.** Once a release has been consumed by even one platform, its content is frozen. Any change after that requires a new version number. Re-tagging a consumed version gives two platforms different content under the same name — a silent failure, and the worst kind.
 
-Before a release: run `shadcn registry validate fahadaali/naf-ui` and confirm it passes.
+**Releases are automatic. Never create a tag by hand, and never move one.**
+
+Merging into `main` runs the release workflow. It reads the commit subjects since the last tag, derives the number, creates the tag, publishes the release and regenerates `CHANGELOG.md`. A hand-made tag competes with it and breaks the contract above.
+
+**Intent is written in the commit message.** That is the only place the version number comes from:
+
+| Commit subject | Result |
+|---|---|
+| `fix: …` | patch — 1.2.3 → 1.2.4 |
+| `feat: …` | minor — 1.2.3 → 1.3.0 |
+| `feat!: …` or `BREAKING CHANGE:` in the body | major — 1.2.3 → 2.0.0 |
+| `docs:` `refactor:` `chore:` `test:` `ci:` `style:` `build:` | nothing is released |
+
+Use `.gitmessage` as the template — `git config commit.template .gitmessage` once per clone. Types outside the table are correct and expected; they simply do not trigger a release.
+
+**The workflow refuses to publish a broken registry.** It runs `shadcn registry validate` and rebuilds `public/r` before anything else, and fails if the built output does not match `registry.json`. A release is never cut from a registry that does not validate.
+
+**Nothing is released when nothing warrants it.** A merge carrying only docs or refactors produces no tag and no release. That is the expected outcome, not a failure.
+
+`CHANGELOG.md` is generated. Never edit it by hand — the next release overwrites the edit.
 
 ---
 

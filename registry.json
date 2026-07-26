@@ -148,6 +148,31 @@
       "docs": "يوزّع الملفات إلى الجذر مباشرة لأن كلود كود يقرأ CLAUDE.md من الجذر، والمهارات تشير إلى naf-terms.md و naf-icons.md بالاسم دون مسار. تحذير: يكتب فوق CLAUDE.md القائم في المشروع — راجع الفرق قبل الاعتماد."
     },
     {
+      "name": "naf-governance",
+      "type": "registry:file",
+      "title": "حوكمة ناف",
+      "description": "الإصدارات الآلية من أوصاف الالتزامات، وقالب الوصف. ويجلب معه القواعد والمصطلحات والأيقونات والمهارات.",
+      "registryDependencies": ["naf-rules"],
+      "files": [
+        {
+          "path": ".github/workflows/release.yml",
+          "type": "registry:file",
+          "target": ".github/workflows/release.yml"
+        },
+        {
+          "path": ".github/scripts/release.mjs",
+          "type": "registry:file",
+          "target": ".github/scripts/release.mjs"
+        },
+        {
+          "path": ".gitmessage",
+          "type": "registry:file",
+          "target": ".gitmessage"
+        }
+      ],
+      "docs": "بعد السحب: git config commit.template .gitmessage في كل نسخة من المستودع. سير العمل يعمل عند الدمج في main، ويشترط نجاح shadcn registry validate قبل أي نشر. المنصة التي لا تحوي registry.json تحذف خطوتي التحقق والبناء من سير العمل وتبقي البقية. لا تُنشئ وسماً يدوياً بعد تركيبه."
+    },
+    {
       "name": "naf-logo",
       "type": "registry:component",
       "title": "شعار ناف",
