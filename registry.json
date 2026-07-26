@@ -357,6 +357,25 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "naf-rating",
+      "type": "registry:ui",
+      "title": "التقييم",
+      "description": "نمط عرض التقييم بصيغتيه: قيمة مختصرة ومقياس من خمس نجمات. النجمة لا تُقلب، والمعنى لا يُنقل باللون وحده.",
+      "dependencies": [
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/rating.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "docs": "الممتلئة warning والفارغة muted-foreground — استثناء مقصود لقاعدة وراثة لون النص. يحتاج رموز naf-theme."
     }
   ]
 }

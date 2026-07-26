@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "naf-rating",
+  "title": "التقييم",
+  "description": "نمط عرض التقييم بصيغتيه: قيمة مختصرة ومقياس من خمس نجمات. النجمة لا تُقلب، والمعنى لا يُنقل باللون وحده.",
+  "dependencies": [
+    "lucide-react@1.27.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/rating.tsx",
+      "content": "import * as React from \"react\"\nimport { Star } from \"lucide-react\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\n// التقييم نمط عرض لا أيقونة. صيغتان فقط: قيمة ومقياس.\n//\n// الممتلئة warning والفارغة muted-foreground — استثناء مقصود لقاعدة\n// «الأيقونة ترث لون النص»، لأن التقييم مقياس بصري لا زخرفة.\n//\n// المعنى لا يُنقل باللون وحده: القيمة رقم ظاهر، والمقياس يحمل نصاً بديلاً.\n// النجمة لا تُقلب في الاتجاه من اليمين لليسار.\n\nconst MAX = 5\n\n/** قيمة تقييم مختصرة للوحات والجداول: الرقم ونجمة واحدة ممتلئة. */\nexport interface RatingValueProps extends React.HTMLAttributes<HTMLSpanElement> {\n  value: number | string\n  /** مقاس النجمة — من سلّم الأيقونات: 16 داخل النصوص، 20 داخل الأزرار */\n  size?: number\n}\n\nconst RatingValue = React.forwardRef<HTMLSpanElement, RatingValueProps>(\n  ({ value, size = 16, className, ...props }, ref) => (\n    <span\n      ref={ref}\n      className={cn(\"inline-flex items-center gap-1 tabular-nums\", className)}\n      {...props}\n    >\n      <bdi>{value}</bdi>\n      <Star size={size} className=\"shrink-0 fill-warning text-warning\" />\n    </span>\n  )\n)\nRatingValue.displayName = \"RatingValue\"\n\n/** مقياس من خمس نجمات لبطاقة تقييم مفرد. */\nexport interface RatingScaleProps extends React.HTMLAttributes<HTMLSpanElement> {\n  value: number\n  size?: number\n  /** نص بديل مخصّص — الافتراضي «تقييم N من 5» */\n  label?: string\n}\n\nconst RatingScale = React.forwardRef<HTMLSpanElement, RatingScaleProps>(\n  ({ value, size = 16, label, className, ...props }, ref) => {\n    const filled = Math.max(0, Math.min(MAX, Math.round(value)))\n    const text = label ?? `تقييم ${value} من ${MAX}`\n\n    return (\n      <span\n        ref={ref}\n        role=\"img\"\n        aria-label={text}\n        title={text}\n        className={cn(\"inline-flex items-center gap-0.5\", className)}\n        {...props}\n      >\n        {Array.from({ length: MAX }, (_, index) => (\n          <Star\n            key={index}\n            size={size}\n            aria-hidden\n            className={cn(\n              \"shrink-0\",\n              index < filled\n                ? \"fill-warning text-warning\"\n                : \"fill-transparent text-muted-foreground\"\n            )}\n          />\n        ))}\n      </span>\n    )\n  }\n)\nRatingScale.displayName = \"RatingScale\"\n\nexport { RatingValue, RatingScale }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "docs": "الممتلئة warning والفارغة muted-foreground — استثناء مقصود لقاعدة وراثة لون النص. يحتاج رموز naf-theme.",
+  "type": "registry:ui"
+}
