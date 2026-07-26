@@ -8,7 +8,9 @@
       "type": "registry:file",
       "title": "خط ناف",
       "description": "IBM Plex Sans Arabic بأوزان 400 و500 و600 و700 فقط، مستضاف ذاتياً. عائلة واحدة لا غير.",
-      "dependencies": ["@fontsource/ibm-plex-sans-arabic"],
+      "dependencies": [
+        "@fontsource/ibm-plex-sans-arabic"
+      ],
       "files": [
         {
           "path": "registry/naf/font/naf-font.css",
@@ -22,7 +24,9 @@
       "type": "registry:theme",
       "title": "ثيم ناف",
       "description": "رموز الألوان والمقاسات والظلال للوضعين الفاتح والداكن. كل أزواج النص والخلفية تتجاوز 4.5:1.",
-      "registryDependencies": ["naf-font"],
+      "registryDependencies": [
+        "naf-font"
+      ],
       "files": [
         {
           "path": "naf-theme.css",
@@ -50,7 +54,9 @@
       "type": "registry:file",
       "title": "خريطة أيقونات ناف",
       "description": "عائلة Lucide حصراً، والمعنى الواحد له أيقونة واحدة في المنصات الخمس، مع قواعد القلب في الاتجاه من اليمين لليسار.",
-      "dependencies": ["lucide-react@1.27.0"],
+      "dependencies": [
+        "lucide-react@1.27.0"
+      ],
       "files": [
         {
           "path": "naf-icons.md",
@@ -77,8 +83,14 @@
       "type": "registry:component",
       "title": "رمز الريال السعودي",
       "description": "الرمز U+20C1 بوزنيه، مستضاف ذاتياً، مع مكوّن المبلغ وبديله النصي ر.س.",
-      "dependencies": ["@emran-alhaddad/saudi-riyal-font@1.1.0"],
-      "registryDependencies": ["naf-format", "utils"],
+      "dependencies": [
+        "@emran-alhaddad/saudi-riyal-font@1.1.0"
+      ],
+      "registryDependencies": [
+        "naf-theme",
+        "naf-format",
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/naf/currency/naf-currency.css",
@@ -96,7 +108,7 @@
           "target": "app/files/OFL.txt"
         }
       ],
-      "docs": "استورد app/naf-currency.css بعد app/naf-theme.css. ملفا woff2 يصلان مع الحزمة @emran-alhaddad/saudi-riyal-font المثبّتة بإصدار دقيق، ويجمّعهما بناء المشروع فيُخدَمان من نطاق المنصة لا من شبكة توصيل خارجية — كما في naf-font. خط الريال يسبق الخط الأساسي في --font-sans، وهو مقيّد بـ unicode-range على U+20C1 وحده فلا يخطف الحروف اللاتينية. الترخيص SIL OFL 1.1 ونصّه في app/files/OFL.txt — لا تحذفه."
+      "docs": "استورد app/naf-currency.css بعد app/naf-theme.css — الترتيب ملزم، فالملف يبني قائمة الخطوط على var(--font-sans) التي يعرّفها الثيم. ملفا woff2 يصلان مع الحزمة @emran-alhaddad/saudi-riyal-font المثبّتة بإصدار دقيق، ويجمّعهما بناء المشروع فيُخدَمان من نطاق المنصة لا من شبكة توصيل خارجية — كما في naf-font. خط الريال يسبق الخط الأساسي داخل هذا الملف وحده، ولا يُعدَّل naf-theme.css من أجله. وهو مقيّد بـ unicode-range على U+20C1 فلا يخطف الحروف اللاتينية. الترخيص SIL OFL 1.1 ونصّه في app/files/OFL.txt — لا تحذفه."
     },
     {
       "name": "naf-skills",
@@ -127,7 +139,9 @@
       "type": "registry:file",
       "title": "قواعد ناف",
       "description": "ملفات الحوكمة الثلاثة إلى جذر المشروع: القواعد الملزمة، وقاموس المصطلحات، وخريطة الأيقونات.",
-      "registryDependencies": ["naf-skills"],
+      "registryDependencies": [
+        "naf-skills"
+      ],
       "files": [
         {
           "path": "CLAUDE.md",
@@ -152,7 +166,9 @@
       "type": "registry:file",
       "title": "حوكمة ناف",
       "description": "الإصدارات الآلية من أوصاف الالتزامات، وقالب الوصف. ويجلب معه القواعد والمصطلحات والأيقونات والمهارات.",
-      "registryDependencies": ["naf-rules"],
+      "registryDependencies": [
+        "naf-rules"
+      ],
       "files": [
         {
           "path": ".github/workflows/release.yml",
@@ -177,7 +193,9 @@
       "type": "registry:component",
       "title": "شعار ناف",
       "description": "خمس نسخ معتمدة مع مكوّن يختار النسخة تلقائياً حسب الوضع، وأيقونة المتصفح من رمز ناف.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/naf/brand/naf-logo.tsx",
@@ -222,7 +240,10 @@
       "type": "registry:lib",
       "title": "أدوات مشتركة",
       "description": "دالة دمج الأصناف التي تعتمد عليها كل المكوّنات.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/naf/lib/utils.ts",
@@ -236,8 +257,14 @@
       "type": "registry:ui",
       "title": "الزر",
       "description": "ثلاثة ارتفاعات فقط: sm وmd وlg. حلقة تركيز ظاهرة، وخصائص اتجاهية منطقية.",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react@1.27.0"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/naf/ui/button.tsx",
@@ -250,8 +277,12 @@
       "type": "registry:ui",
       "title": "الحقل",
       "description": "حقل إدخال بنفس ارتفاعات الزر ليتحاذيا، مع حالة خطأ عبر aria-invalid.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/naf/ui/input.tsx",
@@ -264,7 +295,9 @@
       "type": "registry:ui",
       "title": "البطاقة",
       "description": "سطح محتوى بلا هوامش خارجية — المسافات مسؤولية العنصر الأب.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/naf/ui/card.tsx",
@@ -277,8 +310,13 @@
       "type": "registry:ui",
       "title": "النافذة المنبثقة",
       "description": "توسيط بخصائص غير اتجاهية، وزر الإغلاق في نهاية السطر منطقياً لا يميناً أو يساراً.",
-      "dependencies": ["@radix-ui/react-dialog", "lucide-react@1.27.0"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/naf/ui/dialog.tsx",
@@ -291,8 +329,13 @@
       "type": "registry:ui",
       "title": "التنبيه",
       "description": "خمسة أنواع، ولكل نوع أيقونة ونص معاً — لا يُوصَّل المعنى باللون وحده.",
-      "dependencies": ["class-variance-authority", "lucide-react@1.27.0"],
-      "registryDependencies": ["utils"],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/naf/ui/alert.tsx",
@@ -305,7 +348,9 @@
       "type": "registry:ui",
       "title": "الجدول",
       "description": "محاذاة بداية السطر منطقياً، وأرقام متساوية العرض لتتحاذى الأعمدة.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/naf/ui/table.tsx",
