@@ -6,9 +6,18 @@ import {
   Clock,
   FilePen,
   Info,
+  CircleSlash,
+  Link2,
+  Link2Off,
+  Loader,
+  MailCheck,
+  MailX,
   Send,
+  ShieldAlert,
+  ShieldCheck,
   TriangleAlert,
   UserCheck,
+  UserMinus,
 } from "lucide-react"
 
 import { Section } from "./section"
@@ -72,24 +81,52 @@ const SOFT: Record<string, string> = {
   "muted-foreground": "bg-muted text-muted-foreground",
 }
 
+const SUBSCRIPTION = [
+  { label: "نشط", token: "success", icon: CircleCheck },
+  { label: "بانتظار التأكيد", token: "warning", icon: Clock },
+  { label: "ألغى الاشتراك", token: "muted-foreground", icon: UserMinus },
+  { label: "مرتدّ", token: "destructive", icon: MailX },
+]
+
+const DELIVERY = [
+  { label: "قيد الإرسال", token: "info", icon: Loader },
+  { label: "أُرسلت", token: "success", icon: MailCheck },
+  { label: "فاشل", token: "destructive", icon: CircleX },
+]
+
+const CONNECTION = [
+  { label: "مفعّل", token: "success", icon: CircleCheck },
+  { label: "معطّل", token: "muted-foreground", icon: CircleSlash },
+  { label: "مضبوط", token: "success", icon: ShieldCheck },
+  { label: "غير مضبوط", token: "destructive", icon: ShieldAlert },
+  { label: "مربوط", token: "success", icon: Link2 },
+  { label: "غير مربوط", token: "muted-foreground", icon: Link2Off },
+]
+
+function Chips({ items }: { items: typeof LIFECYCLE }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {items.map((status) => {
+        const Icon = status.icon
+        return (
+          <span
+            key={status.label}
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-sm font-medium ${SOFT[status.token]}`}
+          >
+            <Icon className="size-4 shrink-0" aria-hidden="true" />
+            <span>{status.label}</span>
+          </span>
+        )
+      })}
+    </div>
+  )
+}
+
 function LifecycleBlock() {
   return (
     <div className="flex flex-col gap-4">
       <h3 className="text-xl font-semibold">دورة حياة المحتوى</h3>
-      <div className="flex flex-wrap gap-2">
-        {LIFECYCLE.map((status) => {
-          const Icon = status.icon
-          return (
-            <span
-              key={status.label}
-              className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-sm font-medium ${SOFT[status.token]}`}
-            >
-              <Icon className="size-4 shrink-0" aria-hidden="true" />
-              <span>{status.label}</span>
-            </span>
-          )
-        })}
-      </div>
+      <Chips items={LIFECYCLE} />
       <p className="text-sm text-muted-foreground">
         اللون يتكرّر عمداً: «بانتظار المراجعة» و«بانتظار الاعتماد» كلاهما{" "}
         <bdi className="font-mono">warning</bdi>، و«معتمد» و«منشور» كلاهما{" "}
@@ -128,8 +165,24 @@ export function StatusesSection() {
           )
         })}
       </div>
-      <div className="mt-10">
+      <div className="mt-10 flex flex-col gap-8">
         <LifecycleBlock />
+        <div className="flex flex-col gap-4">
+          <h3 className="text-xl font-semibold">الاشتراك البريدي</h3>
+          <Chips items={SUBSCRIPTION} />
+        </div>
+        <div className="flex flex-col gap-4">
+          <h3 className="text-xl font-semibold">الإرسال البريدي</h3>
+          <Chips items={DELIVERY} />
+        </div>
+        <div className="flex flex-col gap-4">
+          <h3 className="text-xl font-semibold">الربط والتفعيل</h3>
+          <Chips items={CONNECTION} />
+          <p className="text-sm text-muted-foreground">
+            ثنائيات تقنية تتكرّر في كل شاشة إعدادات. سُجّلت هنا لأن كل منصة كانت
+            ستخترع لها ألواناً ونصوصاً مختلفة.
+          </p>
+        </div>
       </div>
     </Section>
   )
