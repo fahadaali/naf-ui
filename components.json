@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/registry/naf",
+    "ui": "@/registry/naf/ui",
+    "lib": "@/registry/naf/lib",
+    "utils": "@/registry/naf/lib/utils"
+  },
+  "registries": {
+    "@naf": "https://raw.githubusercontent.com/fahadaali/naf-ui/main/public/r/{name}.json"
+  }
+}

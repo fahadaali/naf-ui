@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "naf-font",
+  "title": "خط ناف",
+  "description": "IBM Plex Sans Arabic بأوزان 400 و500 و600 و700 فقط، مستضاف ذاتياً. عائلة واحدة لا غير.",
+  "dependencies": [
+    "@fontsource/ibm-plex-sans-arabic"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/font/naf-font.css",
+      "content": "/* ============================================================\n   خط ناف — IBM Plex Sans Arabic\n   أربعة أوزان فقط: 400 و 500 و 600 و 700\n   عائلة واحدة. لا تستورد خطاً آخر في أي منصة.\n   الملفات مستضافة ذاتياً — لا طلبات لخوادم خارجية.\n   ============================================================ */\n\n@import \"@fontsource/ibm-plex-sans-arabic/400.css\";\n@import \"@fontsource/ibm-plex-sans-arabic/500.css\";\n@import \"@fontsource/ibm-plex-sans-arabic/600.css\";\n@import \"@fontsource/ibm-plex-sans-arabic/700.css\";\n",
+      "type": "registry:file",
+      "target": "app/naf-font.css"
+    }
+  ],
+  "type": "registry:file"
+}

@@ -1,0 +1,8 @@
+/* ورقة الأنماط العامة لصفحة المعاينة.
+   الثيم يُستورد كما هو من الجذر — لا تُنسخ قيمه ولا تُعدّل هنا. */
+
+@import "../naf-theme.css";
+@import "../registry/naf/font/naf-font.css";
+
+@source "../app";
+@source "../registry";

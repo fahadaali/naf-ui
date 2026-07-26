@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "title": "الجدول",
+  "description": "محاذاة بداية السطر منطقياً، وأرقام متساوية العرض لتتحاذى الأعمدة.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/table.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\n// tabular-nums على الجذر: أعمدة الأرقام تتحاذى رأسياً.\nconst Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(\n  ({ className, ...props }, ref) => (\n    <div className=\"relative w-full overflow-x-auto\">\n      <table\n        ref={ref}\n        className={cn(\"w-full caption-bottom text-sm tabular-nums\", className)}\n        {...props}\n      />\n    </div>\n  )\n)\nTable.displayName = \"Table\"\n\nconst TableHeader = React.forwardRef<\n  HTMLTableSectionElement,\n  React.HTMLAttributes<HTMLTableSectionElement>\n>(({ className, ...props }, ref) => (\n  <thead ref={ref} className={cn(\"[&_tr]:border-b [&_tr]:border-border\", className)} {...props} />\n))\nTableHeader.displayName = \"TableHeader\"\n\nconst TableBody = React.forwardRef<\n  HTMLTableSectionElement,\n  React.HTMLAttributes<HTMLTableSectionElement>\n>(({ className, ...props }, ref) => (\n  <tbody ref={ref} className={cn(\"[&_tr:last-child]:border-0\", className)} {...props} />\n))\nTableBody.displayName = \"TableBody\"\n\nconst TableFooter = React.forwardRef<\n  HTMLTableSectionElement,\n  React.HTMLAttributes<HTMLTableSectionElement>\n>(({ className, ...props }, ref) => (\n  <tfoot\n    ref={ref}\n    className={cn(\"border-t border-border bg-muted/50 font-medium\", className)}\n    {...props}\n  />\n))\nTableFooter.displayName = \"TableFooter\"\n\nconst TableRow = React.forwardRef<\n  HTMLTableRowElement,\n  React.HTMLAttributes<HTMLTableRowElement>\n>(({ className, ...props }, ref) => (\n  <tr\n    ref={ref}\n    className={cn(\n      \"border-b border-border transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\",\n      className\n    )}\n    {...props}\n  />\n))\nTableRow.displayName = \"TableRow\"\n\nconst TableHead = React.forwardRef<\n  HTMLTableCellElement,\n  React.ThHTMLAttributes<HTMLTableCellElement>\n>(({ className, ...props }, ref) => (\n  <th\n    ref={ref}\n    className={cn(\n      \"h-12 px-4 text-start align-middle font-semibold text-muted-foreground\",\n      className\n    )}\n    {...props}\n  />\n))\nTableHead.displayName = \"TableHead\"\n\nconst TableCell = React.forwardRef<\n  HTMLTableCellElement,\n  React.TdHTMLAttributes<HTMLTableCellElement>\n>(({ className, ...props }, ref) => (\n  <td ref={ref} className={cn(\"px-4 py-3 text-start align-middle\", className)} {...props} />\n))\nTableCell.displayName = \"TableCell\"\n\nconst TableCaption = React.forwardRef<\n  HTMLTableCaptionElement,\n  React.HTMLAttributes<HTMLTableCaptionElement>\n>(({ className, ...props }, ref) => (\n  <caption ref={ref} className={cn(\"mt-4 text-sm text-muted-foreground\", className)} {...props} />\n))\nTableCaption.displayName = \"TableCaption\"\n\nexport {\n  Table,\n  TableHeader,\n  TableBody,\n  TableFooter,\n  TableHead,\n  TableRow,\n  TableCell,\n  TableCaption,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
