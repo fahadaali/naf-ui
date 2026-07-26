@@ -5,7 +5,7 @@
   "description": "خمسة أنواع، ولكل نوع أيقونة ونص معاً — لا يُوصَّل المعنى باللون وحده.",
   "dependencies": [
     "class-variance-authority",
-    "lucide-react"
+    "lucide-react@1.27.0"
   ],
   "registryDependencies": [
     "utils"

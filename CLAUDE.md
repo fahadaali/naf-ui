@@ -62,6 +62,8 @@ A major upgrade is a deliberate, coordinated decision:
 
 Never bump the major in one repository alone. Six codebases on two different icon vocabularies is exactly the drift this file exists to prevent.
 
+**Two places, one number.** The Lucide version is written twice in `naf-ui` — in `package.json`, which the preview page runs on, and in `registry.json`, which the five platforms install from. Upgrading means changing both together. Change one without the other and the preview shows one version while the platforms run another, and the preview stops being a reference — which is the only thing it is for.
+
 ---
 
 ## 3. Components

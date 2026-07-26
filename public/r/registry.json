@@ -50,7 +50,7 @@
       "type": "registry:file",
       "title": "خريطة أيقونات ناف",
       "description": "عائلة Lucide حصراً، والمعنى الواحد له أيقونة واحدة في المنصات الخمس، مع قواعد القلب في الاتجاه من اليمين لليسار.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["lucide-react@1.27.0"],
       "files": [
         {
           "path": "naf-icons.md",
@@ -123,7 +123,7 @@
       "type": "registry:ui",
       "title": "الزر",
       "description": "ثلاثة ارتفاعات فقط: sm وmd وlg. حلقة تركيز ظاهرة، وخصائص اتجاهية منطقية.",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react@1.27.0"],
       "registryDependencies": ["utils"],
       "files": [
         {
@@ -164,7 +164,7 @@
       "type": "registry:ui",
       "title": "النافذة المنبثقة",
       "description": "توسيط بخصائص غير اتجاهية، وزر الإغلاق في نهاية السطر منطقياً لا يميناً أو يساراً.",
-      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react@1.27.0"],
       "registryDependencies": ["utils"],
       "files": [
         {
@@ -178,7 +178,7 @@
       "type": "registry:ui",
       "title": "التنبيه",
       "description": "خمسة أنواع، ولكل نوع أيقونة ونص معاً — لا يُوصَّل المعنى باللون وحده.",
-      "dependencies": ["class-variance-authority", "lucide-react"],
+      "dependencies": ["class-variance-authority", "lucide-react@1.27.0"],
       "registryDependencies": ["utils"],
       "files": [
         {

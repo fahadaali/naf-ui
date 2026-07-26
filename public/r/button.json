@@ -6,7 +6,7 @@
   "dependencies": [
     "@radix-ui/react-slot",
     "class-variance-authority",
-    "lucide-react"
+    "lucide-react@1.27.0"
   ],
   "registryDependencies": [
     "utils"

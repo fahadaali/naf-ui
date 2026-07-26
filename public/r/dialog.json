@@ -5,7 +5,7 @@
   "description": "توسيط بخصائص غير اتجاهية، وزر الإغلاق في نهاية السطر منطقياً لا يميناً أو يساراً.",
   "dependencies": [
     "@radix-ui/react-dialog",
-    "lucide-react"
+    "lucide-react@1.27.0"
   ],
   "registryDependencies": [
     "utils"
