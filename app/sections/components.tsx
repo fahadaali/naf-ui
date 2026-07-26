@@ -31,6 +31,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/registry/naf/ui/dialog"
+import { Money } from "@/registry/naf/currency/money"
 import { Input } from "@/registry/naf/ui/input"
 import {
   Table,
@@ -301,7 +302,7 @@ const INVOICES = [
     id: "INV-2026-0311",
     client: "مؤسسة الرياض للمقاولات",
     date: "2026/07/12",
-    amount: "12,400.00 ر.س",
+    amount: 12400,
     status: "معتمد",
     icon: CircleCheck,
     tone: "text-success",
@@ -310,7 +311,7 @@ const INVOICES = [
     id: "INV-2026-0312",
     client: "شركة نجد للتقنية",
     date: "2026/07/18",
-    amount: "8,750.00 ر.س",
+    amount: 8750,
     status: "قيد المراجعة",
     icon: Clock,
     tone: "text-warning",
@@ -319,7 +320,7 @@ const INVOICES = [
     id: "INV-2026-0313",
     client: "الأحمد وشركاه",
     date: "2026/07/21",
-    amount: "23,900.00 ر.س",
+    amount: 23900,
     status: "مرفوض",
     icon: CircleX,
     tone: "text-destructive",
@@ -328,7 +329,7 @@ const INVOICES = [
     id: "INV-2026-0314",
     client: "مجموعة الخليج الطبية",
     date: "2026/07/24",
-    amount: "5,200.00 ر.س",
+    amount: 5200,
     status: "معلّق",
     icon: Info,
     tone: "text-info",
@@ -372,7 +373,7 @@ function TableBlock() {
                   <bdi>{invoice.date}</bdi>
                 </TableCell>
                 <TableCell>
-                  <bdi>{invoice.amount}</bdi>
+                  <Money value={invoice.amount} />
                 </TableCell>
                 <TableCell>
                   <span className={`inline-flex items-center gap-1.5 font-medium ${invoice.tone}`}>

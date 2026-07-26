@@ -3,6 +3,7 @@
 
 @import "../naf-theme.css";
 @import "../registry/naf/font/naf-font.css";
+@import "../registry/naf/currency/naf-currency.css";
 
 @source "../app";
 @source "../registry";

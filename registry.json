@@ -60,6 +60,45 @@
       ]
     },
     {
+      "name": "naf-format",
+      "type": "registry:lib",
+      "title": "دوال التنسيق",
+      "description": "الأرقام والمبالغ والتواريخ الميلادية والهجرية والوقت والجوال. لا تنسّق شيئاً من هذه في مكوّن.",
+      "files": [
+        {
+          "path": "registry/naf/lib/format.ts",
+          "type": "registry:lib",
+          "target": "lib/format.ts"
+        }
+      ]
+    },
+    {
+      "name": "naf-currency",
+      "type": "registry:component",
+      "title": "رمز الريال السعودي",
+      "description": "الرمز U+20C1 بوزنيه، مستضاف ذاتياً، مع مكوّن المبلغ وبديله النصي ر.س.",
+      "dependencies": ["@emran-alhaddad/saudi-riyal-font@1.1.0"],
+      "registryDependencies": ["naf-format", "utils"],
+      "files": [
+        {
+          "path": "registry/naf/currency/naf-currency.css",
+          "type": "registry:file",
+          "target": "app/naf-currency.css"
+        },
+        {
+          "path": "registry/naf/currency/money.tsx",
+          "type": "registry:component",
+          "target": "components/money.tsx"
+        },
+        {
+          "path": "registry/naf/currency/files/OFL.txt",
+          "type": "registry:file",
+          "target": "app/files/OFL.txt"
+        }
+      ],
+      "docs": "استورد app/naf-currency.css بعد app/naf-theme.css. ملفا woff2 يصلان مع الحزمة @emran-alhaddad/saudi-riyal-font المثبّتة بإصدار دقيق، ويجمّعهما بناء المشروع فيُخدَمان من نطاق المنصة لا من شبكة توصيل خارجية — كما في naf-font. خط الريال يسبق الخط الأساسي في --font-sans، وهو مقيّد بـ unicode-range على U+20C1 وحده فلا يخطف الحروف اللاتينية. الترخيص SIL OFL 1.1 ونصّه في app/files/OFL.txt — لا تحذفه."
+    },
+    {
       "name": "naf-skills",
       "type": "registry:file",
       "title": "مهارات ناف",

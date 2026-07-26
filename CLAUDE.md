@@ -158,7 +158,10 @@ If a term is missing, add it to `naf-ui` first. Do not coin one locally.
 Use the shared formatting library. Never format inline.
 
 - Western digits always
-- Currency: `12,400.00 ر.س` — this changes when `naf-currency` ships the official Saudi Riyal symbol (U+20C1). Never use the old `﷼` (U+FDFC).
+- Currency in interfaces: the official Saudi Riyal symbol `U+20C1`, rendered by `Money` from `naf-currency`. Never the private-use `U+E900`, never the old `﷼` (U+FDFC), never typed into a string by hand.
+- Currency in print and PDF: `12,400.00 ر.س`. Those files may be opened by software that does not load the symbol font, and an empty box is worse than an abbreviation. The same fallback appears automatically in the interface if the font fails to load.
+- The symbol's height matches the height of the digits beside it, its clear space is a third of that height, and its direction follows the text. All three come from `naf-currency` — do not restyle it locally.
+- The symbol font is pinned exactly, like Lucide. The height correction factor in `naf-currency.css` is measured against a specific release — ink height 62 against 73 for a digit in `@emran-alhaddad/saudi-riyal-font@1.1.0`. **Upgrading the package requires re-measuring and updating the factor. Never raise the pin without it.**
 - Time: 24-hour
 - Judicial dates — hearings, deadlines, statutory periods — show Gregorian followed by Hijri in parentheses. Invoices and internal timestamps stay Gregorian.
 - Every number, date and amount wrapped in a direction-isolating element
@@ -189,6 +192,8 @@ Before reporting any UI work complete:
 7. Check at 375px width
 8. Confirm every visible string exists in `naf-terms.md`
 9. Confirm every icon exists in `naf-icons.md` with the same meaning
+10. Confirm no number, date or amount is formatted inline — every one of them comes from `naf-format`
+11. Confirm every amount renders through `Money` from `naf-currency`: symbol `U+20C1` (never `U+E900`, never `U+FDFC`), direction-isolated, tabular numerals, `ر.س` fallback intact
 
 **State which of these you actually verified. Never claim a check you did not run.**
 

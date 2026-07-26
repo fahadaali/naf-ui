@@ -7,6 +7,7 @@ import { Button } from "@/registry/naf/ui/button"
 
 import { ColorsSection } from "./sections/colors"
 import { ComponentsSection } from "./sections/components"
+import { CurrencySection } from "./sections/currency"
 import { LogoSection } from "./sections/logo"
 import { StatusesSection } from "./sections/statuses"
 import { TypographySection } from "./sections/typography"
@@ -92,6 +93,7 @@ export default function PreviewPage() {
         <ColorsSection />
         <TypographySection />
         <StatusesSection />
+        <CurrencySection />
         <ComponentsSection />
       </main>
 
