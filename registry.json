@@ -60,6 +60,55 @@
       ]
     },
     {
+      "name": "naf-skills",
+      "type": "registry:file",
+      "title": "مهارات ناف",
+      "description": "ثلاث مهارات لكلود كود: ربط منصة بالسجلّ، وفحص انحراف الهوية، والتحقق من أسماء الأيقونات.",
+      "files": [
+        {
+          "path": ".claude/skills/link-platform/SKILL.md",
+          "type": "registry:file",
+          "target": ".claude/skills/link-platform/SKILL.md"
+        },
+        {
+          "path": ".claude/skills/check-drift/SKILL.md",
+          "type": "registry:file",
+          "target": ".claude/skills/check-drift/SKILL.md"
+        },
+        {
+          "path": ".claude/skills/verify-icons/SKILL.md",
+          "type": "registry:file",
+          "target": ".claude/skills/verify-icons/SKILL.md"
+        }
+      ],
+      "docs": "بعد السحب تصير المهارات متاحة في هذا المشروع بأسماء /link-platform و /check-drift و /verify-icons. المهارات تقرأ CLAUDE.md و naf-terms.md و naf-icons.md من جذر المشروع، فاسحب naf-rules معها."
+    },
+    {
+      "name": "naf-rules",
+      "type": "registry:file",
+      "title": "قواعد ناف",
+      "description": "ملفات الحوكمة الثلاثة إلى جذر المشروع: القواعد الملزمة، وقاموس المصطلحات، وخريطة الأيقونات.",
+      "registryDependencies": ["naf-skills"],
+      "files": [
+        {
+          "path": "CLAUDE.md",
+          "type": "registry:file",
+          "target": "CLAUDE.md"
+        },
+        {
+          "path": "naf-terms.md",
+          "type": "registry:file",
+          "target": "naf-terms.md"
+        },
+        {
+          "path": "naf-icons.md",
+          "type": "registry:file",
+          "target": "naf-icons.md"
+        }
+      ],
+      "docs": "يوزّع الملفات إلى الجذر مباشرة لأن كلود كود يقرأ CLAUDE.md من الجذر، والمهارات تشير إلى naf-terms.md و naf-icons.md بالاسم دون مسار. تحذير: يكتب فوق CLAUDE.md القائم في المشروع — راجع الفرق قبل الاعتماد."
+    },
+    {
       "name": "naf-logo",
       "type": "registry:component",
       "title": "شعار ناف",
