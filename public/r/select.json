@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select",
+  "title": "القائمة المنسدلة",
+  "description": "عنصر select أصلي بارتفاعات sm وmd وlg نفسها، وشيفرون يتبع الاتجاه.",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react@1.27.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/select.tsx",
+      "content": "import * as React from \"react\"\nimport { ChevronDown } from \"lucide-react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\n// عنصر select أصلي لا بديل مبني بجافاسكربت: يحتفظ بلوحة المفاتيح\n// وقارئ الشاشة وقائمة النظام على الجوال بلا كلفة.\n//\n// الشيفرون من الخريطة (فتح قائمة منسدلة → ChevronDown) ولا يُقلب،\n// وموضعه inset-inline-end فيتبع الاتجاه. والحشو الأمامي يفسح له مكاناً.\nconst selectVariants = cva(\n  cn(\n    \"flex w-full appearance-none rounded-md border border-border bg-card text-foreground\",\n    \"text-start shadow-xs transition-colors\",\n    \"hover:border-ring\",\n    \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\",\n    \"focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n    \"disabled:cursor-not-allowed disabled:opacity-50\",\n    \"aria-invalid:border-destructive aria-invalid:focus-visible:ring-destructive\"\n  ),\n  {\n    variants: {\n      size: {\n        sm: \"h-8 ps-3 pe-8 text-sm\",\n        md: \"h-10 ps-4 pe-10 text-base\",\n        lg: \"h-12 ps-4 pe-10 text-lg\",\n      },\n    },\n    defaultVariants: {\n      size: \"md\",\n    },\n  }\n)\n\nconst ICON_SIZE = { sm: \"size-4\", md: \"size-5\", lg: \"size-5\" } as const\n\nexport interface SelectProps\n  extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, \"size\">,\n    VariantProps<typeof selectVariants> {\n  /** أصناف تُمرَّر للغلاف لا للعنصر — لضبط العرض في الشبكات */\n  wrapperClassName?: string\n}\n\nconst Select = React.forwardRef<HTMLSelectElement, SelectProps>(\n  ({ className, wrapperClassName, size = \"md\", children, ...props }, ref) => {\n    return (\n      <span className={cn(\"relative block w-full\", wrapperClassName)}>\n        <select ref={ref} className={cn(selectVariants({ size }), className)} {...props}>\n          {children}\n        </select>\n        <ChevronDown\n          aria-hidden=\"true\"\n          className={cn(\n            \"pointer-events-none absolute top-1/2 -translate-y-1/2 text-muted-foreground\",\n            \"end-3\",\n            ICON_SIZE[size ?? \"md\"]\n          )}\n        />\n      </span>\n    )\n  }\n)\nSelect.displayName = \"Select\"\n\nexport { Select, selectVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "docs": "عنصر أصلي لا بديل مبني بجافاسكربت: يحتفظ بلوحة المفاتيح وقارئ الشاشة وقائمة النظام على الجوال.",
+  "type": "registry:ui"
+}

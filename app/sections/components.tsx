@@ -34,6 +34,8 @@ import {
 import { Money } from "@/registry/naf/currency/money"
 import { RatingScale, RatingValue } from "@/registry/naf/ui/rating"
 import { Input } from "@/registry/naf/ui/input"
+import { Select } from "@/registry/naf/ui/select"
+import { Textarea } from "@/registry/naf/ui/textarea"
 import {
   Table,
   TableBody,
@@ -66,6 +68,9 @@ function ButtonBlock() {
         </StateColumn>
         <StateColumn label="معطّل">
           <Button disabled>حفظ</Button>
+        </StateColumn>
+        <StateColumn label="ناجح">
+          <Button variant="success">اعتماد</Button>
         </StateColumn>
       </StateGrid>
 
@@ -158,6 +163,51 @@ function ClientCard({ className }: { className?: string }) {
         </Button>
       </CardFooter>
     </Card>
+  )
+}
+
+function FieldsBlock() {
+  return (
+    <div className="flex flex-col gap-6">
+      <StateGrid>
+        <StateColumn label="قائمة منسدلة">
+          <Select defaultValue="case">
+            <option value="case">قضية</option>
+            <option value="matter">ملف</option>
+            <option value="consult">استشارة</option>
+          </Select>
+        </StateColumn>
+        <StateColumn label="تركيز">
+          <Select className={FOCUS} defaultValue="case">
+            <option value="case">قضية</option>
+          </Select>
+        </StateColumn>
+        <StateColumn label="معطّل">
+          <Select disabled defaultValue="case">
+            <option value="case">قضية</option>
+          </Select>
+        </StateColumn>
+        <StateColumn label="صغير">
+          <Select size="sm" defaultValue="case">
+            <option value="case">قضية</option>
+          </Select>
+        </StateColumn>
+      </StateGrid>
+      <StateGrid>
+        <StateColumn label="نص متعدّد الأسطر">
+          <Textarea placeholder="اكتب ملخّص الاستشارة…" />
+        </StateColumn>
+        <StateColumn label="تركيز">
+          <Textarea className={FOCUS} placeholder="اكتب ملخّص الاستشارة…" />
+        </StateColumn>
+        <StateColumn label="معطّل">
+          <Textarea disabled placeholder="اكتب ملخّص الاستشارة…" />
+        </StateColumn>
+        <StateColumn label="خطأ">
+          <Textarea aria-invalid placeholder="اكتب ملخّص الاستشارة…" />
+        </StateColumn>
+      </StateGrid>
+    </div>
   )
 }
 
@@ -424,6 +474,7 @@ function RatingBlock() {
 const BLOCKS = [
   { title: "الزر", node: <ButtonBlock /> },
   { title: "الحقل", node: <InputBlock /> },
+  { title: "القائمة والنص الطويل", node: <FieldsBlock /> },
   { title: "البطاقة", node: <CardBlock /> },
   { title: "النافذة المنبثقة", node: <DialogBlock /> },
   { title: "التنبيه", node: <AlertBlock /> },
@@ -435,7 +486,7 @@ export function ComponentsSection() {
   return (
     <Section
       title="المكوّنات"
-      description="سبعة مكوّنات معتمدة. كلها بخصائص اتجاهية منطقية، وحلقة تركيز ظاهرة، وثلاثة ارتفاعات لا رابع لها."
+      description="تسعة مكوّنات معتمدة. كلها بخصائص اتجاهية منطقية، وحلقة تركيز ظاهرة، وثلاثة ارتفاعات لا رابع لها."
     >
       <div className="flex flex-col gap-12">
         {BLOCKS.map((block) => (

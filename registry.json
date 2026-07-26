@@ -359,6 +359,45 @@
       ]
     },
     {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "القائمة المنسدلة",
+      "description": "عنصر select أصلي بارتفاعات sm وmd وlg نفسها، وشيفرون يتبع الاتجاه.",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "docs": "عنصر أصلي لا بديل مبني بجافاسكربت: يحتفظ بلوحة المفاتيح وقارئ الشاشة وقائمة النظام على الجوال."
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "حقل النص متعدّد الأسطر",
+      "description": "نفس رموز الحقل وحلقته. الارتفاع حدٌّ أدنى لا ثابت لأن النص يكبر بمحتواه.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "docs": "المقاسات الثلاثة تحكم النص والحدّ الأدنى للارتفاع، لا ارتفاعاً ثابتاً."
+    },
+    {
       "name": "naf-rating",
       "type": "registry:ui",
       "title": "التقييم",

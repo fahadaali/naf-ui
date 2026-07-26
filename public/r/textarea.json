@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "حقل النص متعدّد الأسطر",
+  "description": "نفس رموز الحقل وحلقته. الارتفاع حدٌّ أدنى لا ثابت لأن النص يكبر بمحتواه.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/textarea.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\n// نفس رموز الحقل وحلقته وحدوده. الارتفاع هنا حدٌّ أدنى لا ثابت،\n// لأن النص متعدّد الأسطر يكبر بمحتواه — والمقاسات الثلاثة تحكم النص لا الارتفاع.\nconst textareaVariants = cva(\n  cn(\n    \"flex w-full rounded-md border border-border bg-card text-foreground\",\n    \"text-start shadow-xs transition-colors\",\n    \"placeholder:text-muted-foreground\",\n    \"hover:border-ring\",\n    \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\",\n    \"focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n    \"disabled:cursor-not-allowed disabled:opacity-50\",\n    \"aria-invalid:border-destructive aria-invalid:focus-visible:ring-destructive\"\n  ),\n  {\n    variants: {\n      size: {\n        sm: \"min-h-16 px-3 py-2 text-sm\",\n        md: \"min-h-24 px-4 py-2 text-base\",\n        lg: \"min-h-32 px-4 py-3 text-lg\",\n      },\n    },\n    defaultVariants: {\n      size: \"md\",\n    },\n  }\n)\n\nexport interface TextareaProps\n  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, \"size\">,\n    VariantProps<typeof textareaVariants> {}\n\nconst Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(\n  ({ className, size, ...props }, ref) => {\n    return (\n      <textarea\n        ref={ref}\n        className={cn(textareaVariants({ size }), className)}\n        {...props}\n      />\n    )\n  }\n)\nTextarea.displayName = \"Textarea\"\n\nexport { Textarea, textareaVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "docs": "المقاسات الثلاثة تحكم النص والحدّ الأدنى للارتفاع، لا ارتفاعاً ثابتاً.",
+  "type": "registry:ui"
+}
