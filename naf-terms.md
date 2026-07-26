@@ -83,6 +83,11 @@
 | Agreement | اتفاقية | تُميّز عن العقد |
 | Memo | مذكرة | |
 | Pleading | لائحة | |
+| Statement of claim | صحيفة دعوى | اللائحة الافتتاحية للدعوى |
+| Internal policy | لائحة داخلية | تُميّز عن اللائحة القضائية |
+| Judgment analysis | تحليل حكم قضائي | |
+| Document review | مراجعة وتدقيق مستند | الفعل، لا حالة «مُراجَع» |
+| Litigation | التقاضي | تصنيف لا كيان |
 | Hearing | جلسة | |
 | Session | جلسة | تعارض محتمل — انظر أدناه |
 | Appointment | موعد | |

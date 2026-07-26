@@ -206,6 +206,8 @@ Use `.gitmessage` as the template — `git config commit.template .gitmessage` o
 
 **The workflow refuses to publish a broken registry.** It runs `shadcn registry validate` and rebuilds `public/r` before anything else, and fails if the built output does not match `registry.json`. A release is never cut from a registry that does not validate.
 
+**The same workflow ships to the platforms.** They have no `registry.json`, so the two registry steps are skipped there and only version derivation and changelog generation run. A platform release is cut from commit subjects exactly as the registry's is.
+
 **Nothing is released when nothing warrants it.** A merge carrying only docs or refactors produces no tag and no release. That is the expected outcome, not a failure.
 
 `CHANGELOG.md` is generated. Never edit it by hand — the next release overwrites the edit.
