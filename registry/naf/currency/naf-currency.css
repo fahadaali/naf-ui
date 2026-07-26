@@ -1,0 +1,69 @@
+/* ============================================================
+   رمز الريال السعودي — U+20C1
+   المصدر: github.com/emran-alhaddad/Saudi-Riyal-Font
+   الحزمة: @emran-alhaddad/saudi-riyal-font@1.1.0 — مثبّتة بإصدار دقيق
+   الترخيص: SIL Open Font License 1.1 — نصّه في files/OFL.txt
+
+   الملفات تصل مع الحزمة ويجمّعها بناء المشروع، فتُخدَم من نطاق
+   المنصة نفسها لا من شبكة توصيل خارجية — كما في naf-font تماماً.
+
+   U+20C1 حصراً. لا U+E900 وهو نطاق الاستخدام الخاص، ولا الرمز
+   القديم U+FDFC.
+
+   [تقييد إلزامي] الخط يحوي أيضاً A و B و C و D و U+20C0. ولمّا
+   كان يسبق الخط الأساسي في قائمة الخطوط، فبدون unicode-range
+   سيخطف الحروف اللاتينية الأربعة من IBM Plex Sans Arabic.
+   القيد أدناه يحصر استخدامه في رمز الريال وحده.
+   ============================================================ */
+
+@font-face {
+  font-family: "Saudi Riyal";
+  src: url("@emran-alhaddad/saudi-riyal-font/fonts/regular/saudi_riyal.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+20C1;
+}
+
+@font-face {
+  font-family: "Saudi Riyal";
+  src: url("@emran-alhaddad/saudi-riyal-font/fonts/bold/saudi_riyal.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+20C1;
+}
+
+:root {
+  /* [مقيس] الرمز مرسوم أقصر من الأرقام داخل مربع الخط: ارتفاع حبره
+     62 وحدة مقابل 73 للرقم عند المقاس نفسه. وإرشاد البنك المركزي
+     يقضي بأن يطابق ارتفاع الرمز ارتفاع النص، فيُكبَّر بالنسبة
+     73 ÷ 62 ≈ 1.18 ليستويا. قياس لا اجتهاد جمالي. */
+  --naf-riyal-scale: 1.18;
+
+  /* إرشادات البنك المركزي: مساحة الفراغ حول الرمز تساوي ثلث ارتفاعه.
+     القيمة بوحدة em على الرمز نفسه، أي ثلث ارتفاع الرمز بعد التكبير. */
+  --naf-riyal-space: 0.333em;
+}
+
+/* الرمز:
+   - الارتفاع يطابق ارتفاع الأرقام المجاورة بعد معامل التصحيح
+   - الاتجاه يتبع اتجاه النص — لا إعادة تعيين لـ direction هنا
+   - الفراغ حوله منطقي لا فيزيائي فيتبع الاتجاه بدوره */
+.naf-riyal {
+  font-family: "Saudi Riyal", var(--font-sans);
+  font-size: calc(1em * var(--naf-riyal-scale));
+  line-height: 1;
+  margin-inline: var(--naf-riyal-space);
+}
+
+/* البديل النصي حين يتعذّر تحميل الخط — يأخذ الفراغ نفسه */
+.naf-riyal-fallback {
+  margin-inline: var(--naf-riyal-space);
+}
+
+/* المبلغ كاملاً: أرقام متساوية العرض لتتحاذى الأعمدة في الجداول */
+.naf-money {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

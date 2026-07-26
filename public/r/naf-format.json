@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "naf-format",
+  "title": "دوال التنسيق",
+  "description": "الأرقام والمبالغ والتواريخ الميلادية والهجرية والوقت والجوال. لا تنسّق شيئاً من هذه في مكوّن.",
+  "files": [
+    {
+      "path": "registry/naf/lib/format.ts",
+      "content": "/* ============================================================\n   دوال التنسيق المشتركة لمنصات ناف.\n   لا تنسّق رقماً ولا تاريخاً ولا مبلغاً في مكوّن. من هنا حصراً.\n\n   القواعد المعتمدة:\n   - أرقام غربية دائماً\n   - فاصل الآلاف بالفاصلة\n   - المبالغ بخانتين عشريتين دائماً\n   - الوقت بنظام ٢٤ ساعة\n   - التاريخ الميلادي: 2026/07/26\n   - التاريخ الهجري: 1448/02/11 هـ\n   ============================================================ */\n\nconst AMOUNT_FORMAT = new Intl.NumberFormat(\"en-US\", {\n  minimumFractionDigits: 2,\n  maximumFractionDigits: 2,\n})\n\nconst NUMBER_FORMAT = new Intl.NumberFormat(\"en-US\", {\n  maximumFractionDigits: 0,\n})\n\nconst HIJRI_FORMAT = new Intl.DateTimeFormat(\"en-US-u-ca-islamic-umalqura-nu-latn\", {\n  year: \"numeric\",\n  month: \"2-digit\",\n  day: \"2-digit\",\n})\n\nfunction toDate(value: Date | string | number): Date {\n  return value instanceof Date ? value : new Date(value)\n}\n\nfunction pad(value: number): string {\n  return String(value).padStart(2, \"0\")\n}\n\n/** المبلغ بلا رمز العملة: 12400 -> \"12,400.00\" */\nexport function formatAmount(value: number): string {\n  return AMOUNT_FORMAT.format(value)\n}\n\n/** عدد صحيح بفاصل آلاف: 12400 -> \"12,400\" */\nexport function formatNumber(value: number): string {\n  return NUMBER_FORMAT.format(value)\n}\n\n/** ميلادي: \"2026/07/26\" */\nexport function formatDate(value: Date | string | number): string {\n  const date = toDate(value)\n  return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())}`\n}\n\n/** هجري أم القرى: \"1448/02/11 هـ\" */\nexport function formatHijriDate(value: Date | string | number): string {\n  const parts = HIJRI_FORMAT.formatToParts(toDate(value))\n  const get = (type: string) => parts.find((part) => part.type === type)?.value ?? \"\"\n  return `${get(\"year\")}/${get(\"month\")}/${get(\"day\")} هـ`\n}\n\n/** المزدوج: الميلادي أولاً ثم الهجري بين قوسين */\nexport function formatDualDate(value: Date | string | number): string {\n  return `${formatDate(value)} (${formatHijriDate(value)})`\n}\n\n/** نظام ٢٤ ساعة: \"14:30\" */\nexport function formatTime(value: Date | string | number): string {\n  const date = toDate(value)\n  return `${pad(date.getHours())}:${pad(date.getMinutes())}`\n}\n\n/** الجوال السعودي: \"+966 5X XXX XXXX\" */\nexport function formatPhone(value: string): string {\n  const digits = value.replace(/\\D/g, \"\").replace(/^00966|^966|^0/, \"\")\n  if (digits.length !== 9) return value\n  return `+966 ${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5)}`\n}\n",
+      "type": "registry:lib",
+      "target": "lib/format.ts"
+    }
+  ],
+  "type": "registry:lib"
+}
