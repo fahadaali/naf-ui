@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "البطاقة",
+  "description": "سطح محتوى بلا هوامش خارجية — المسافات مسؤولية العنصر الأب.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/card.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\n// البطاقة لا تحمل هوامش خارجية — المسافات مسؤولية العنصر الأب.\nconst Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div\n      ref={ref}\n      className={cn(\n        \"rounded-lg border border-border bg-card text-card-foreground text-start shadow-sm\",\n        className\n      )}\n      {...props}\n    />\n  )\n)\nCard.displayName = \"Card\"\n\nconst CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"flex flex-col gap-1.5 p-6\", className)} {...props} />\n  )\n)\nCardHeader.displayName = \"CardHeader\"\n\nconst CardTitle = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"text-lg font-semibold\", className)} {...props} />\n  )\n)\nCardTitle.displayName = \"CardTitle\"\n\nconst CardDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p ref={ref} className={cn(\"text-sm text-muted-foreground\", className)} {...props} />\n))\nCardDescription.displayName = \"CardDescription\"\n\nconst CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"p-6 pt-0\", className)} {...props} />\n  )\n)\nCardContent.displayName = \"CardContent\"\n\nconst CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"flex items-center gap-3 p-6 pt-0\", className)} {...props} />\n  )\n)\nCardFooter.displayName = \"CardFooter\"\n\nexport { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

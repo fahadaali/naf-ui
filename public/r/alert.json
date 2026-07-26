@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "التنبيه",
+  "description": "خمسة أنواع، ولكل نوع أيقونة ونص معاً — لا يُوصَّل المعنى باللون وحده.",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react@1.27.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/alert.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\n// إلزامي: كل تنبيه أيقونة ونص معاً. اللون وحده لا يكفي.\nconst alertVariants = cva(\n  cn(\n    \"flex w-full items-start gap-3 rounded-lg border p-4 text-start\",\n    \"[&>svg]:size-5 [&>svg]:shrink-0 [&>svg]:mt-0.5\"\n  ),\n  {\n    variants: {\n      variant: {\n        default: \"border-border bg-card text-card-foreground\",\n        info: \"border-info/30 bg-info/10 text-foreground [&>svg]:text-info\",\n        success: \"border-success/30 bg-success/10 text-foreground [&>svg]:text-success\",\n        warning: \"border-warning/30 bg-warning/10 text-foreground [&>svg]:text-warning\",\n        destructive:\n          \"border-destructive/30 bg-destructive/10 text-foreground [&>svg]:text-destructive\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nexport interface AlertProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof alertVariants> {}\n\nconst Alert = React.forwardRef<HTMLDivElement, AlertProps>(\n  ({ className, variant, ...props }, ref) => (\n    <div ref={ref} role=\"alert\" className={cn(alertVariants({ variant }), className)} {...props} />\n  )\n)\nAlert.displayName = \"Alert\"\n\nconst AlertTitle = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"font-semibold\", className)} {...props} />\n  )\n)\nAlertTitle.displayName = \"AlertTitle\"\n\nconst AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p ref={ref} className={cn(\"text-sm text-muted-foreground\", className)} {...props} />\n))\nAlertDescription.displayName = \"AlertDescription\"\n\nexport { Alert, AlertTitle, AlertDescription, alertVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -18,7 +18,7 @@
 | حذف | `Trash2` |
 | حفظ | `Save` |
 | بحث | `Search` |
-| تصفية | `Filter` |
+| تصفية | `Funnel` |
 | رفع | `Upload` |
 | تنزيل | `Download` |
 | طباعة | `Printer` |
@@ -28,7 +28,7 @@
 | إرسال | `Send` |
 | تحديث | `RefreshCw` |
 | إغلاق | `X` |
-| المزيد | `MoreVertical` |
+| المزيد | `EllipsisVertical` |
 | رابط خارجي | `ExternalLink` |
 
 **تنبيه:** `Trash2` للحذف و`X` للإغلاق. لا تستخدم `X` للحذف أبداً — الفرق بين إغلاق نافذة وحذف بيانات يجب أن يكون بصرياً واضحاً.
@@ -44,7 +44,7 @@
 | قضية | `Gavel` |
 | ملف / مسألة | `Briefcase` |
 | استشارة | `MessageSquare` |
-| عقد | `FileSignature` |
+| عقد | `Stamp` |
 | اتفاقية | `Handshake` |
 | مذكرة | `FileText` |
 | لائحة | `ScrollText` |
@@ -64,14 +64,14 @@
 
 | الحالة | الأيقونة | اللون |
 |---|---|---|
-| معتمد | `CheckCircle2` | `success` |
+| معتمد | `CircleCheck` | `success` |
 | قيد المراجعة | `Clock` | `warning` |
-| مرفوض | `XCircle` | `destructive` |
-| مسودة | `FileEdit` | `muted-foreground` |
+| مرفوض | `CircleX` | `destructive` |
+| مسودة | `FilePen` | `muted-foreground` |
 | منتهٍ | `CalendarX` | `muted-foreground` |
 | موقّع | `FileCheck` | `success` |
 | معلومة | `Info` | `info` |
-| تحذير | `AlertTriangle` | `warning` |
+| تحذير | `TriangleAlert` | `warning` |
 
 **إلزامي:** لا تعتمد على اللون وحده. كل حالة أيقونة **و**نص، لأن نحو ٨٪ من الرجال لا يميّزون الأحمر عن الأخضر.
 
@@ -81,7 +81,7 @@
 
 | المعنى | الأيقونة | تُقلب في RTL؟ |
 |---|---|---|
-| الرئيسية | `Home` | لا |
+| الرئيسية | `House` | لا |
 | لوحة التحكم | `LayoutDashboard` | لا |
 | الإعدادات | `Settings` | لا |
 | الإشعارات | `Bell` | لا |

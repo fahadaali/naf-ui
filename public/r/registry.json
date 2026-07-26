@@ -1,0 +1,204 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "naf",
+  "homepage": "https://github.com/fahadaali/naf-ui",
+  "items": [
+    {
+      "name": "naf-font",
+      "type": "registry:file",
+      "title": "خط ناف",
+      "description": "IBM Plex Sans Arabic بأوزان 400 و500 و600 و700 فقط، مستضاف ذاتياً. عائلة واحدة لا غير.",
+      "dependencies": ["@fontsource/ibm-plex-sans-arabic"],
+      "files": [
+        {
+          "path": "registry/naf/font/naf-font.css",
+          "type": "registry:file",
+          "target": "app/naf-font.css"
+        }
+      ]
+    },
+    {
+      "name": "naf-theme",
+      "type": "registry:theme",
+      "title": "ثيم ناف",
+      "description": "رموز الألوان والمقاسات والظلال للوضعين الفاتح والداكن. كل أزواج النص والخلفية تتجاوز 4.5:1.",
+      "registryDependencies": ["naf-font"],
+      "files": [
+        {
+          "path": "naf-theme.css",
+          "type": "registry:file",
+          "target": "app/naf-theme.css"
+        }
+      ],
+      "docs": "استورد app/naf-theme.css ثم app/naf-font.css من ورقة الأنماط العامة للمشروع. لا تعدّل قيمه — أي تغيير في الهوية يحدث في naf-ui وحده."
+    },
+    {
+      "name": "naf-terms",
+      "type": "registry:file",
+      "title": "مصطلحات واجهة ناف",
+      "description": "المرجع الوحيد لكل نص يظهر للمستخدم في المنصات الخمس. مصطلح لا يمرّ من هنا هو بداية الانحراف.",
+      "files": [
+        {
+          "path": "naf-terms.md",
+          "type": "registry:file",
+          "target": "docs/naf-terms.md"
+        }
+      ]
+    },
+    {
+      "name": "naf-icons",
+      "type": "registry:file",
+      "title": "خريطة أيقونات ناف",
+      "description": "عائلة Lucide حصراً، والمعنى الواحد له أيقونة واحدة في المنصات الخمس، مع قواعد القلب في الاتجاه من اليمين لليسار.",
+      "dependencies": ["lucide-react@1.27.0"],
+      "files": [
+        {
+          "path": "naf-icons.md",
+          "type": "registry:file",
+          "target": "docs/naf-icons.md"
+        }
+      ]
+    },
+    {
+      "name": "naf-logo",
+      "type": "registry:component",
+      "title": "شعار ناف",
+      "description": "خمس نسخ معتمدة مع مكوّن يختار النسخة تلقائياً حسب الوضع، وأيقونة المتصفح من رمز ناف.",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/naf/brand/naf-logo.tsx",
+          "type": "registry:component",
+          "target": "components/naf-logo.tsx"
+        },
+        {
+          "path": "naf-logo.svg",
+          "type": "registry:file",
+          "target": "public/brand/naf-logo.svg"
+        },
+        {
+          "path": "naf-logo-dark.svg",
+          "type": "registry:file",
+          "target": "public/brand/naf-logo-dark.svg"
+        },
+        {
+          "path": "naf-logo-mono.svg",
+          "type": "registry:file",
+          "target": "public/brand/naf-logo-mono.svg"
+        },
+        {
+          "path": "naf-mark.svg",
+          "type": "registry:file",
+          "target": "public/brand/naf-mark.svg"
+        },
+        {
+          "path": "naf-mark-dark.svg",
+          "type": "registry:file",
+          "target": "public/brand/naf-mark-dark.svg"
+        },
+        {
+          "path": "app/icon.svg",
+          "type": "registry:file",
+          "target": "app/icon.svg"
+        }
+      ],
+      "docs": "app/icon.svg نسخة حرفية من naf-mark.svg تعتمدها Next.js أيقونةً للمتصفح. الشعار لا يُقلب في الاتجاه من اليمين لليسار أبداً."
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "أدوات مشتركة",
+      "description": "دالة دمج الأصناف التي تعتمد عليها كل المكوّنات.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/naf/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "الزر",
+      "description": "ثلاثة ارتفاعات فقط: sm وmd وlg. حلقة تركيز ظاهرة، وخصائص اتجاهية منطقية.",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react@1.27.0"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/naf/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "الحقل",
+      "description": "حقل إدخال بنفس ارتفاعات الزر ليتحاذيا، مع حالة خطأ عبر aria-invalid.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/naf/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "البطاقة",
+      "description": "سطح محتوى بلا هوامش خارجية — المسافات مسؤولية العنصر الأب.",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/naf/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "النافذة المنبثقة",
+      "description": "توسيط بخصائص غير اتجاهية، وزر الإغلاق في نهاية السطر منطقياً لا يميناً أو يساراً.",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react@1.27.0"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/naf/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "التنبيه",
+      "description": "خمسة أنواع، ولكل نوع أيقونة ونص معاً — لا يُوصَّل المعنى باللون وحده.",
+      "dependencies": ["class-variance-authority", "lucide-react@1.27.0"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/naf/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "الجدول",
+      "description": "محاذاة بداية السطر منطقياً، وأرقام متساوية العرض لتتحاذى الأعمدة.",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/naf/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

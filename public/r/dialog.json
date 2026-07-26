@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "title": "النافذة المنبثقة",
+  "description": "توسيط بخصائص غير اتجاهية، وزر الإغلاق في نهاية السطر منطقياً لا يميناً أو يساراً.",
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "lucide-react@1.27.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/dialog.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as DialogPrimitive from \"@radix-ui/react-dialog\"\nimport { X } from \"lucide-react\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\nconst Dialog = DialogPrimitive.Root\nconst DialogTrigger = DialogPrimitive.Trigger\nconst DialogPortal = DialogPrimitive.Portal\nconst DialogClose = DialogPrimitive.Close\n\nconst DialogOverlay = React.forwardRef<\n  React.ComponentRef<typeof DialogPrimitive.Overlay>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Overlay\n    ref={ref}\n    className={cn(\"fixed inset-0 z-50 bg-foreground/40\", className)}\n    {...props}\n  />\n))\nDialogOverlay.displayName = DialogPrimitive.Overlay.displayName\n\n// التوسيط بـ inset-0 و m-auto — لا خصائص اتجاهية فيزيائية.\nconst DialogContent = React.forwardRef<\n  React.ComponentRef<typeof DialogPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {\n    closeLabel?: string\n  }\n>(({ className, children, closeLabel = \"إغلاق\", ...props }, ref) => (\n  <DialogPortal>\n    <DialogOverlay />\n    <DialogPrimitive.Content\n      ref={ref}\n      className={cn(\n        \"fixed inset-4 z-50 m-auto h-fit max-w-lg\",\n        \"flex flex-col gap-4 rounded-lg border border-border bg-popover p-6\",\n        \"text-start text-popover-foreground shadow-lg\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n      <DialogPrimitive.Close\n        className={cn(\n          \"absolute top-4 end-4 inline-flex size-8 items-center justify-center rounded-md\",\n          \"text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground\",\n          \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring\",\n          \"focus-visible:ring-offset-2 focus-visible:ring-offset-popover\"\n        )}\n      >\n        <X className=\"size-5\" aria-hidden=\"true\" />\n        <span className=\"sr-only\">{closeLabel}</span>\n      </DialogPrimitive.Close>\n    </DialogPrimitive.Content>\n  </DialogPortal>\n))\nDialogContent.displayName = DialogPrimitive.Content.displayName\n\nconst DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (\n  <div className={cn(\"flex flex-col gap-1.5 pe-10 text-start\", className)} {...props} />\n)\nDialogHeader.displayName = \"DialogHeader\"\n\nconst DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (\n  <div className={cn(\"flex flex-col-reverse gap-3 sm:flex-row sm:justify-end\", className)} {...props} />\n)\nDialogFooter.displayName = \"DialogFooter\"\n\nconst DialogTitle = React.forwardRef<\n  React.ComponentRef<typeof DialogPrimitive.Title>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Title\n    ref={ref}\n    className={cn(\"text-lg font-semibold\", className)}\n    {...props}\n  />\n))\nDialogTitle.displayName = DialogPrimitive.Title.displayName\n\nconst DialogDescription = React.forwardRef<\n  React.ComponentRef<typeof DialogPrimitive.Description>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Description\n    ref={ref}\n    className={cn(\"text-sm text-muted-foreground\", className)}\n    {...props}\n  />\n))\nDialogDescription.displayName = DialogPrimitive.Description.displayName\n\nexport {\n  Dialog,\n  DialogPortal,\n  DialogOverlay,\n  DialogTrigger,\n  DialogClose,\n  DialogContent,\n  DialogHeader,\n  DialogFooter,\n  DialogTitle,\n  DialogDescription,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
