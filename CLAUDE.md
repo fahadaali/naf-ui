@@ -51,6 +51,17 @@ In plain CSS use `margin-inline-start`, `padding-inline-end`, `inset-inline-star
 **Icon mirroring.** Mirror: arrows, chevrons, back, forward, send, reply, indent.
 Do not mirror: logos, brand marks, clocks, checkmarks, search, user, media play, photographs.
 
+**Icon library version.** Lucide is pinned to an exact version — `"lucide-react": "1.27.0"`, no caret. Lucide renames icons between majors and keeps the old names as deprecated aliases that are removed later, so a floating range means a rename lands silently and an icon disappears at build time.
+
+A major upgrade is a deliberate, coordinated decision:
+
+1. Run `/verify-icons` on all six repositories — `naf-ui` and the five platforms — before bumping anything.
+2. It reports every name in `naf-icons.md` that is missing or has become a deprecated alias, and proposes replacements.
+3. Get the mapping table approved, apply it to `naf-icons.md` in `naf-ui` first, then to the platforms.
+4. Only then bump the pin, in all six repositories together.
+
+Never bump the major in one repository alone. Six codebases on two different icon vocabularies is exactly the drift this file exists to prevent.
+
 ---
 
 ## 3. Components
