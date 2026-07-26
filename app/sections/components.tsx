@@ -32,6 +32,7 @@ import {
   DialogTrigger,
 } from "@/registry/naf/ui/dialog"
 import { Money } from "@/registry/naf/currency/money"
+import { RatingScale, RatingValue } from "@/registry/naf/ui/rating"
 import { Input } from "@/registry/naf/ui/input"
 import {
   Table,
@@ -393,6 +394,33 @@ function TableBlock() {
   )
 }
 
+function RatingBlock() {
+  return (
+    <div className="flex flex-col gap-6">
+      <StateGrid>
+        <StateColumn label="قيمة">
+          <RatingValue value="4.4" />
+        </StateColumn>
+        <StateColumn label="مقياس">
+          <RatingScale value={4} />
+        </StateColumn>
+        <StateColumn label="مقياس كامل">
+          <RatingScale value={5} />
+        </StateColumn>
+        <StateColumn label="مقياس منخفض">
+          <RatingScale value={2} />
+        </StateColumn>
+      </StateGrid>
+      <p className="text-sm text-muted-foreground">
+        الممتلئة <span className="text-warning">warning</span> والفارغة{" "}
+        <span className="text-muted-foreground">muted-foreground</span> — الاستثناء الوحيد
+        مع أيقونات الحالة لقاعدة وراثة لون النص. المقياس يحمل نصاً بديلاً، والقيمة رقم
+        ظاهر، فلا يُنقل المعنى باللون وحده.
+      </p>
+    </div>
+  )
+}
+
 const BLOCKS = [
   { title: "الزر", node: <ButtonBlock /> },
   { title: "الحقل", node: <InputBlock /> },
@@ -400,13 +428,14 @@ const BLOCKS = [
   { title: "النافذة المنبثقة", node: <DialogBlock /> },
   { title: "التنبيه", node: <AlertBlock /> },
   { title: "الجدول", node: <TableBlock /> },
+  { title: "التقييم", node: <RatingBlock /> },
 ]
 
 export function ComponentsSection() {
   return (
     <Section
       title="المكوّنات"
-      description="ستة مكوّنات معتمدة. كلها بخصائص اتجاهية منطقية، وحلقة تركيز ظاهرة، وثلاثة ارتفاعات لا رابع لها."
+      description="سبعة مكوّنات معتمدة. كلها بخصائص اتجاهية منطقية، وحلقة تركيز ظاهرة، وثلاثة ارتفاعات لا رابع لها."
     >
       <div className="flex flex-col gap-12">
         {BLOCKS.map((block) => (
