@@ -8,6 +8,18 @@ Pin to a release: `fahadaali/naf-ui/button#v1.0.0`
 
 ---
 
+## 0. The governing principle
+
+**The registry precedes the platform.**
+
+Every design decision — a colour, a term, an icon meaning, a component — is recorded in `naf-ui` *before* it is applied anywhere else. A decision applied in a platform without being registered is drift, even when the decision itself is correct.
+
+This is what makes the work shrink instead of repeat. The first platform surfaces twenty decisions; by the fifth, nearly all of them are already settled.
+
+When you find yourself about to decide something locally: stop, register it, then apply it.
+
+---
+
 ## 1. The one rule
 
 **Never write a raw design value.** No hex codes, no `rgb()`, no arbitrary pixel spacing, no font stacks, no ad-hoc radii, no inline shadows.
@@ -22,6 +34,8 @@ Pin to a release: `fahadaali/naf-ui/button#v1.0.0`
 ```
 
 If a value you need does not exist in the token set, **stop and ask**. Adding a token is a deliberate decision made once in `naf-ui`, never per-component.
+
+**No parallel systems.** A platform must not define its own theme, token set, colour scale or utility palette in `tailwind.config.js` or anywhere else. If you find one, it predates this system and must be replaced entirely and its definition removed. Two sources of truth in one repository is worse than no system at all.
 
 ---
 
@@ -41,32 +55,52 @@ All five platforms serve Arabic first. Physical direction properties will break 
 
 In plain CSS use `margin-inline-start`, `padding-inline-end`, `inset-inline-start`, `border-inline-start`.
 
-**Mixed-direction content.** Any string mixing Arabic with digits, Latin words, phone numbers, IBANs, currency, dates or filenames must be isolated, or Arabic reorders it:
+**Mixed-direction content.** Any string mixing Arabic with digits, Latin words, phone numbers, IBANs, currency, dates, case numbers or filenames must be isolated, or Arabic reorders it:
 
 ```jsx
 <span>المبلغ <bdi>12,400.00</bdi> ريال</span>
 <span>الملف <bdi>report.pdf</bdi> جاهز</span>
+<span>قضية رقم <bdi>2291/ت/1447</bdi></span>
 ```
 
-**Icon mirroring.** Mirror: arrows, chevrons, back, forward, send, reply, indent.
-Do not mirror: logos, brand marks, clocks, checkmarks, search, user, media play, photographs.
-
-**Icon library version.** Lucide is pinned to an exact version — `"lucide-react": "1.27.0"`, no caret. Lucide renames icons between majors and keeps the old names as deprecated aliases that are removed later, so a floating range means a rename lands silently and an icon disappears at build time.
-
-A major upgrade is a deliberate, coordinated decision:
-
-1. Run `/verify-icons` on all six repositories — `naf-ui` and the five platforms — before bumping anything.
-2. It reports every name in `naf-icons.md` that is missing or has become a deprecated alias, and proposes replacements.
-3. Get the mapping table approved, apply it to `naf-icons.md` in `naf-ui` first, then to the platforms.
-4. Only then bump the pin, in all six repositories together.
-
-Never bump the major in one repository alone. Six codebases on two different icon vocabularies is exactly the drift this file exists to prevent.
-
-**Two places, one number.** The Lucide version is written twice in `naf-ui` — in `package.json`, which the preview page runs on, and in `registry.json`, which the five platforms install from. Upgrading means changing both together. Change one without the other and the preview shows one version while the platforms run another, and the preview stops being a reference — which is the only thing it is for.
+Case numbers and reference numbers containing slashes are the highest-risk case. Verify them visually in the browser, not only in code.
 
 ---
 
-## 3. Components
+## 3. Icons
+
+**Library: Lucide, exclusively.** Never import an icon from any other library. Never inline an SVG that duplicates an existing Lucide icon.
+
+**Emoji are banned in user interfaces, without exception.** Not as icons, not as decoration, not in buttons, labels, empty states or alerts.
+
+The reasons are technical, not aesthetic:
+- They render differently on every operating system — the client sees a different interface than you do
+- They do not inherit text colour or weight, so they escape the theme in both modes
+- Screen readers announce them by unintended names
+- Directional emoji do not mirror in RTL
+
+**Meaning comes from `naf-icons.md`.** One meaning, one icon, across all five platforms. Never pick an icon for a concept already mapped there.
+
+When you meet an emoji or a concept whose meaning is not in the map: do not invent a match, and do not use the nearest icon by shape. Show the surrounding context, ask for the decision, then add the approved mapping to `naf-icons.md` in the registry **before** applying it.
+
+**Mirroring.** Mirror: arrows, chevrons, back, forward, send, reply, indent.
+Do not mirror: logos, brand marks, clocks, checkmarks, search, user, media play, photographs.
+
+**Version pinning.** `lucide-react` is pinned to an exact version — no `^`, no `~` — in two places: `package.json` and `registry.json`. Lucide renames icons between major versions, keeps the old name as a deprecated alias, then removes it. An open range means an icon disappears at build time with no warning.
+
+The version appears in two files. Changing one without the other makes the preview page show one version while platforms run another, which destroys the preview's value as a reference.
+
+**Major upgrades are a four-step procedure, never a single-repo change:**
+1. Run `/verify-icons` on all six repositories before raising any number
+2. Review the reported missing and deprecated names with their proposed replacements
+3. Approve the table, apply in `naf-ui` first, then the platforms
+4. Raise the pin in all six together
+
+Never upgrade in one repository alone. Six repositories on two different icon vocabularies is precisely the drift this file exists to prevent.
+
+---
+
+## 4. Components
 
 - **Never rebuild what exists in the registry.** Check `naf-ui` first, every time.
 - A new shared component is a decision. If a screen needs something new, ask before adding it.
@@ -76,7 +110,7 @@ Never bump the major in one repository alone. Six codebases on two different ico
 
 ---
 
-## 4. Typography
+## 5. Typography
 
 - One family. Never import another font anywhere.
 - Weights 400, 500, 600, 700 only.
@@ -86,7 +120,7 @@ Never bump the major in one repository alone. Six codebases on two different ico
 
 ---
 
-## 5. Colour
+## 6. Colour
 
 Semantic tokens for interface, palette steps for decoration only:
 
@@ -98,14 +132,16 @@ bg-primary  text-primary-foreground  hover:bg-primary/90
 ```
 
 - Accent is emphasis, not decoration. More than one accent element visible at once means one is wrong.
-- Never communicate meaning by colour alone — pair status colours with an icon or label.
+- Never communicate meaning by colour alone — pair status colours with an icon and a label.
 - Light and dark must both work. Test both.
+
+**No undocumented status.** Every status shown to a user must exist in `naf-terms.md` with a registered colour token and a registered icon. A status that appears in one screen without passing through the registry — however reasonable it looks — is the first step back to five different systems.
 
 ---
 
-## 6. Copy
+## 7. Copy
 
-All user-facing text comes from the NAF terminology file in the registry. Never invent a label.
+All user-facing text comes from `naf-terms.md` in the registry. Never invent a label.
 
 - Buttons use the verbal noun: حفظ not احفظ
 - Errors state what happened and what to do. They do not apologise.
@@ -117,35 +153,48 @@ If a term is missing, add it to `naf-ui` first. Do not coin one locally.
 
 ---
 
-## 7. Numbers, dates, money
+## 8. Numbers, dates, money
 
 Use the shared formatting library. Never format inline.
 
 - Western digits always
-- Currency: `12,400.00 ر.س`
+- Currency: `12,400.00 ر.س` — this changes when `naf-currency` ships the official Saudi Riyal symbol (U+20C1). Never use the old `﷼` (U+FDFC).
 - Time: 24-hour
+- Judicial dates — hearings, deadlines, statutory periods — show Gregorian followed by Hijri in parentheses. Invoices and internal timestamps stay Gregorian.
 - Every number, date and amount wrapped in a direction-isolating element
 - Table numerals tabular so columns align
 
 ---
 
-## 8. Definition of done
+## 9. Publishing and versioning
+
+**A GitHub registry reads from the repository's default branch.** Work done on a feature branch is not published, no matter how complete it is. Nothing is live until it is merged into `main`.
+
+**The version tag is a contract.** Once a release has been consumed by even one platform, its content is frozen. Any change after that requires a new version number. Re-tagging a consumed version gives two platforms different content under the same name — a silent failure, and the worst kind.
+
+Before a release: run `shadcn registry validate fahadaali/naf-ui` and confirm it passes.
+
+---
+
+## 10. Definition of done
 
 Before reporting any UI work complete:
 
 1. Search the diff for raw values — no `#`, no `rgb(`, no arbitrary bracket values
 2. Search the diff for `ml-|mr-|pl-|pr-|text-left|text-right|left-|right-` — must return nothing
-3. Render in both `dir="rtl"` and `dir="ltr"`
-4. Render in both light and dark
-5. Tab through the screen — focus visible at every stop
-6. Check at 375px width
-7. Confirm every visible string exists in the terminology file
+3. Search the diff for emoji — must return nothing
+4. Render in both `dir="rtl"` and `dir="ltr"`
+5. Render in both light and dark
+6. Tab through the screen — focus visible at every stop
+7. Check at 375px width
+8. Confirm every visible string exists in `naf-terms.md`
+9. Confirm every icon exists in `naf-icons.md` with the same meaning
 
 **State which of these you actually verified. Never claim a check you did not run.**
 
 ---
 
-## 9. Working style
+## 11. Working style
 
 - One platform per session. Never two repos in one task.
 - Migrations run in reviewable batches: propose the mapping table, get approval, then apply.
@@ -153,4 +202,5 @@ Before reporting any UI work complete:
 - Never delete a file.
 - Never edit an original asset — copy it and edit the copy.
 - When something is ambiguous, ask. Do not guess, do not proceed on an assumption.
+- A table full of guesses is worth less than no table. If you cannot map something honestly, mark it low confidence and say so.
 - Prefer boring, obvious code. Six codebases, many maintainers.
