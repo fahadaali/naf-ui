@@ -31,6 +31,30 @@ const STATUS: Swatch[] = [
   { token: "destructive", surface: "bg-destructive", text: "text-destructive-foreground" },
 ]
 
+/* الخلفيات الناعمة — مشتقّة من رمزها الأساس، لا قيماً مستقلة.
+   النص عليها foreground لأنها أسطح فاتحة في الوضعين. */
+const SOFT: Swatch[] = [
+  { token: "primary-soft", surface: "bg-primary-soft", text: "text-foreground", border: true },
+  { token: "success-soft", surface: "bg-success-soft", text: "text-foreground", border: true },
+  { token: "warning-soft", surface: "bg-warning-soft", text: "text-foreground", border: true },
+  { token: "info-soft", surface: "bg-info-soft", text: "text-foreground", border: true },
+  { token: "destructive-soft", surface: "bg-destructive-soft", text: "text-foreground", border: true },
+  { token: "secondary-soft", surface: "bg-secondary-soft", text: "text-foreground", border: true },
+]
+
+/* هويات مملوكة لأطراف أخرى — استثناء منصوص عليه في CLAUDE.md §1.
+   لخلفيات أيقونات المنصات حصراً، ولا تُستعمل لأي عنصر واجهة آخر. */
+const BRAND: Swatch[] = [
+  { token: "brand-linkedin", surface: "bg-brand-linkedin", text: "text-white" },
+  { token: "brand-x", surface: "bg-brand-x", text: "text-white" },
+  { token: "brand-instagram", surface: "bg-brand-instagram", text: "text-white" },
+  { token: "brand-facebook", surface: "bg-brand-facebook", text: "text-white" },
+  { token: "brand-youtube", surface: "bg-brand-youtube", text: "text-white" },
+  { token: "brand-tiktok", surface: "bg-brand-tiktok", text: "text-white" },
+  { token: "brand-snapchat", surface: "bg-brand-snapchat", text: "text-brand-snapchat-foreground" },
+  { token: "brand-google", surface: "bg-brand-google", text: "text-white" },
+]
+
 const LINES: Swatch[] = [
   { token: "border", surface: "bg-border", text: "text-foreground" },
   { token: "input", surface: "bg-input", text: "text-foreground", border: true },
@@ -92,9 +116,18 @@ export function ColorsSection() {
       <div className="flex flex-col gap-8">
         <SwatchGroup title="أسطح الواجهة" items={INTERFACE} />
         <SwatchGroup title="الحالات" items={STATUS} />
+        <SwatchGroup title="الخلفيات الناعمة" items={SOFT} />
         <SwatchGroup title="الحدود والتركيز" items={LINES} />
         <SwatchGroup title="الرسوم البيانية" items={CHARTS} />
         <SwatchGroup title="الشريط الجانبي" items={SIDEBAR} />
+        <div className="flex flex-col gap-3">
+          <SwatchGroup title="ألوان العلامات الخارجية" items={BRAND} />
+          <p className="text-sm text-muted-foreground">
+            هذه ليست قيم تصميم لناف بل هويات مملوكة لأطراف أخرى. سُجّلت هنا لتبقى تحت
+            السجلّ بدل أن تتكرّر خاماً في كل منصة. تُستعمل لخلفية أيقونة المنصة نفسها
+            حصراً — لا لزر ولا لشارة ولا لأي عنصر واجهة آخر.
+          </p>
+        </div>
       </div>
     </Section>
   )
