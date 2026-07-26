@@ -376,6 +376,25 @@
         }
       ],
       "docs": "الممتلئة warning والفارغة muted-foreground — استثناء مقصود لقاعدة وراثة لون النص. يحتاج رموز naf-theme."
+    },
+    {
+      "name": "naf-theme-toggle",
+      "type": "registry:ui",
+      "title": "مُبدِّل المظهر",
+      "description": "مُبدِّل المظهر بثلاث حالات: يتبع النظام والوضع الفاتح والوضع الداكن. يحفظ الاختيار ويضع صنف .dark على الجذر.",
+      "dependencies": [
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/theme-toggle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "docs": "ثلاث حالات لا حالتان: حالتان تحبسان القارئ خارج «يتبع النظام» عند تغيّر تفضيل نظامه. الأيقونات Sun وMoon وMonitor ولا تُقلب، والمصطلحات من naf-terms.md. يحتاج رموز naf-theme."
     }
   ]
 }
