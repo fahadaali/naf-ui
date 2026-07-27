@@ -236,6 +236,20 @@
       "docs": "app/icon.svg نسخة حرفية من naf-mark.svg تعتمدها Next.js أيقونةً للمتصفح. الشعار لا يُقلب في الاتجاه من اليمين لليسار أبداً."
     },
     {
+      "name": "naf-brand-marks",
+      "type": "registry:component",
+      "title": "شعارات المنصات",
+      "description": "شعارات إكس وتيك توك وسناب شات وثريدز — الأربعة التي لا مقابل لها في Lucide. من simple-icons بترخيص CC0.",
+      "files": [
+        {
+          "path": "registry/naf/brand/brand-marks.tsx",
+          "type": "registry:component",
+          "target": "components/brand-marks.tsx"
+        }
+      ],
+      "docs": "هويات مملوكة لأطراف أخرى: لا تُعدَّل أشكالها ولا تُقلب في الاتجاه ولا تُلوَّن بألوان الثيم. الخلفية من رموز --brand-* والمقدّمة من --brand-on-color. لينكدإن وفيسبوك ويوتيوب وإنستغرام من Lucide لا من هنا. وأيقونة X المسجّلة معناها «إغلاق» لا منصة إكس."
+    },
+    {
       "name": "utils",
       "type": "registry:lib",
       "title": "أدوات مشتركة",
