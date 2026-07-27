@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "الشارة",
+  "description": "شارة حالة مخفّفة: خلفية ‎--*-soft‎ ونصّ ‎--*-strong‎ ليتجاوز 4.5:1. تُبلّغ عن حالة ولا تُنقَر.",
+  "dependencies": [
+    "class-variance-authority",
+    "@radix-ui/react-slot"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/badge.tsx",
+      "content": "import * as React from \"react\"\nimport { Slot } from \"@radix-ui/react-slot\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\n// الشارة تُبلّغ عن حالة، ولا تُنقَر. ما يُنقَر زرّ.\n//\n// الخلفية ‎--*-soft‎ والنصّ والأيقونة ‎--*-strong‎. الاقتران مقصود:\n// الرمز الأساس فوق خلفيته الناعمة يعطي 3.7–3.8 فقط، ونصّ الشارة صغير\n// فحدّه 4.5. رموز ‎-strong‎ هي الصبغة نفسها بإضاءة مقيسة تتجاوزه.\n// لا تخفض لون حالة بيدك، ولا تكتب تخفيفاً خاصاً بك.\n//\n// المصمت للأفعال لا للحالات: جدول بعشرين صفاً من الشارات المصمتة\n// يُقرأ كعشرين زرّاً. والاستثناء الوحيد `destructiveSolid` على صفّ\n// يوشك المستخدم أن يفقده، حيث الثقل هو المقصود.\n//\n// إلزامي: لا تعتمد على اللون وحده — كل شارة حالة أيقونة ونصّ معاً.\nconst badgeVariants = cva(\n  cn(\n    \"inline-flex items-center gap-1.5 whitespace-nowrap\",\n    \"rounded-full px-3 py-1 text-xs font-semibold\",\n    \"[&_svg]:size-4 [&_svg]:shrink-0\"\n  ),\n  {\n    variants: {\n      variant: {\n        default: \"bg-muted text-muted-foreground\",\n        info: \"bg-info-soft text-info-strong\",\n        success: \"bg-success-soft text-success-strong\",\n        warning: \"bg-warning-soft text-warning-strong\",\n        destructive: \"bg-destructive-soft text-destructive-strong\",\n        primary: \"bg-primary-soft text-primary-strong\",\n        destructiveSolid: \"bg-destructive text-destructive-foreground\",\n        outline: \"border border-border text-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLSpanElement>,\n    VariantProps<typeof badgeVariants> {\n  asChild?: boolean\n}\n\nconst Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(\n  ({ className, variant, asChild = false, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"span\"\n    return (\n      <Comp ref={ref} className={cn(badgeVariants({ variant }), className)} {...props} />\n    )\n  }\n)\nBadge.displayName = \"Badge\"\n\nexport { Badge, badgeVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
