@@ -467,6 +467,49 @@
         }
       ],
       "docs": "ثلاث حالات لا حالتان: حالتان تحبسان القارئ خارج «يتبع النظام» عند تغيّر تفضيل نظامه. الأيقونات Sun وMoon وMonitor ولا تُقلب، والمصطلحات من naf-terms.md. يحتاج رموز naf-theme."
+    },
+    {
+      "name": "naf-platform-card",
+      "type": "registry:ui",
+      "title": "بطاقة منصة",
+      "description": "بطاقة المنصة في شبكة مركز الهوية بحالاتها الأربع الظاهرة، وتدرّجها من رموز السجلّ، وبديل الشعار بأول حرفين.",
+      "dependencies": [
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/platform-card.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/naf/ui/naf-platform-card.css",
+          "type": "registry:file",
+          "target": "app/naf-platform-card.css"
+        }
+      ],
+      "docs": "الحالة الخامسة — المخفية — ليست حالة بطاقة: البطاقة لا تُبنى فلا يُلمَّح إلى وجود المنصة. الإبهات والشارة للمنصة المعطّلة وحدها؛ وحرمانُ المستخدم وانتهاءُ وصوله تبقى فيهما البطاقة كاملة والزرّ وحده معطّلاً، وإلا ظنّ القارئ أن المنصة متوقّفة وهي تعمل لغيره. تعطيل الزرّ عرضٌ لا حماية — الرفض الحقيقي في /go/:platformId. يحتاج رموز naf-theme واستيراد app/naf-platform-card.css."
+    },
+    {
+      "name": "naf-platform-grid",
+      "type": "registry:ui",
+      "title": "شبكة المنصات",
+      "description": "حاوية شبكة البطاقات: عدد الأعمدة عند كل عرض والفجوة بينها، قراراً واحداً لا يتكرّر في كل شاشة.",
+      "registryDependencies": [
+        "utils",
+        "naf-platform-card"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/platform-grid.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "docs": "عمود واحد على الجوّال: البطاقة بشعارها ووصفها بسطرين لا تُقرأ في نصف عرض 375 بكسل. ولا هوامش خارجية — المسافة حول الشبكة مسؤولية العنصر الأب."
     }
   ]
 }
