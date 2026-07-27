@@ -344,6 +344,25 @@
       ]
     },
     {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "الشارة",
+      "description": "شارة حالة مخفّفة: خلفية ‎--*-soft‎ ونصّ ‎--*-strong‎ ليتجاوز 4.5:1. تُبلّغ عن حالة ولا تُنقَر.",
+      "dependencies": [
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "table",
       "type": "registry:ui",
       "title": "الجدول",
