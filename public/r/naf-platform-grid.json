@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "naf-platform-grid",
+  "title": "شبكة المنصات",
+  "description": "حاوية شبكة البطاقات: عدد الأعمدة عند كل عرض والفجوة بينها، قراراً واحداً لا يتكرّر في كل شاشة.",
+  "registryDependencies": [
+    "utils",
+    "naf-platform-card"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/platform-grid.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\n\n// حاوية شبكة بطاقات المنصات.\n//\n// وجودها في السجلّ لا في المنصة مقصود رغم بساطتها: عدد الأعمدة عند كل عرض\n// والفجوة بينها قرارٌ واحد يجب أن يتطابق أينما عُرضت الشبكة. تركُه لكل شاشة\n// هو بالضبط كيف تفترق منصتان في تخطيط واحد.\n//\n// عمود واحد على الجوّال — البطاقة بشعارها ووصفها بسطرين لا تُقرأ في نصف\n// عرض 375 بكسل.\n//\n// لا هوامش خارجية: المسافة حول الشبكة مسؤولية العنصر الأب.\n\nexport const PlatformGrid = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div\n      ref={ref}\n      className={cn(\"grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3\", className)}\n      {...props}\n    />\n  )\n)\nPlatformGrid.displayName = \"PlatformGrid\"\n",
+      "type": "registry:ui"
+    }
+  ],
+  "docs": "عمود واحد على الجوّال: البطاقة بشعارها ووصفها بسطرين لا تُقرأ في نصف عرض 375 بكسل. ولا هوامش خارجية — المسافة حول الشبكة مسؤولية العنصر الأب.",
+  "type": "registry:ui"
+}
