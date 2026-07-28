@@ -46,6 +46,8 @@ export interface PlatformCardProps extends React.HTMLAttributes<HTMLDivElement> 
   nameAr: string
   description?: string | null
   logoUrl?: string | null
+  /** ترويسة تملأ رأس البطاقة فتحلّ محلّ التدرّج والشعار والحروف معاً. */
+  bannerUrl?: string | null
   gradToken: string
   state: PlatformCardState
   /** سبب التعليق أو سبب الحرمان، كما كتبه مسؤول النظام. يُعرض كما هو. */
@@ -55,7 +57,10 @@ export interface PlatformCardProps extends React.HTMLAttributes<HTMLDivElement> 
 }
 
 export const PlatformCard = React.forwardRef<HTMLDivElement, PlatformCardProps>(
-  ({ nameAr, description, logoUrl, gradToken, state, note, href, className, ...props }, ref) => {
+  (
+    { nameAr, description, logoUrl, bannerUrl, gradToken, state, note, href, className, ...props },
+    ref
+  ) => {
     const gradientClass =
       GRADIENT_CLASS[gradToken as PlatformGradient] ?? GRADIENT_CLASS["grad-1"]
     const suspended = state === "suspended"
@@ -81,18 +86,24 @@ export const PlatformCard = React.forwardRef<HTMLDivElement, PlatformCardProps>(
         )}
         {...props}
       >
-        <div
-          className={cn(
-            "flex items-center justify-center p-6 text-surface-deep-foreground",
-            gradientClass
-          )}
-        >
-          {logoUrl ? (
-            <img src={logoUrl} alt="" className="size-16 object-contain" />
+        {/* رأس البطاقة: ترويسةٌ إن رُفعت، وإلا التدرّج ومعه الشعار أو الحروف.
+            وارتفاعه ثابت في الحالتين — كان يتبع محتواه فتقصر بطاقةُ الحروف
+            عن بطاقة الشعار في الصفّ الواحد، والترويسة تجعل التفاوت صارخاً. */}
+        <div className={cn("h-28 shrink-0", !bannerUrl && gradientClass)}>
+          {bannerUrl ? (
+            /* الوصف فارغ عمداً: اسم المنصة يليها نصّاً، ووصفُها ثانيةً
+               يجعل قارئ الشاشة ينطق الاسم مرتين. */
+            <img src={bannerUrl} alt="" className="size-full object-cover" />
           ) : (
-            <span aria-hidden="true" className="text-3xl font-semibold">
-              {initials(nameAr)}
-            </span>
+            <div className="flex size-full items-center justify-center text-surface-deep-foreground">
+              {logoUrl ? (
+                <img src={logoUrl} alt="" className="size-16 object-contain" />
+              ) : (
+                <span aria-hidden="true" className="text-3xl font-semibold">
+                  {initials(nameAr)}
+                </span>
+              )}
+            </div>
           )}
         </div>
 
