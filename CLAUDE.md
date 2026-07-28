@@ -93,6 +93,8 @@ The reasons are technical, not aesthetic:
 
 The technical reasons for the ban still hold on those surfaces; they are simply unavoidable there. So keep the set small and conventional, never carry meaning by emoji alone, and make sure the sentence reads correctly with every emoji stripped out. A message that becomes ambiguous without its icons is written wrong.
 
+**One named exception inside an interface, and it is the only one: `👋` in the home greeting of `naf-id`.** It was chosen deliberately over `HandHeart` — an aesthetic call, made with the technical costs above in view, not in ignorance of them. It is registered in `naf-icons.md` with its limits, and those limits are the point: one screen, no skin-tone modifier, no meaning carried, end of the line rather than the start. It does not license a second emoji anywhere. A new one is a new decision, registered the same way, with its own written limits — and the burden is on the case for it, not against the ban.
+
 **Meaning comes from `naf-icons.md`.** One meaning, one icon, across all five platforms. Never pick an icon for a concept already mapped there.
 
 When you meet an emoji or a concept whose meaning is not in the map: do not invent a match, and do not use the nearest icon by shape. Show the surrounding context, ask for the decision, then add the approved mapping to `naf-icons.md` in the registry **before** applying it.
