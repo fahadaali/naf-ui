@@ -521,6 +521,36 @@
       "docs": "الحالة الخامسة — المخفية — ليست حالة بطاقة: البطاقة لا تُبنى فلا يُلمَّح إلى وجود المنصة. الإبهات والشارة للمنصة المعطّلة وحدها؛ وحرمانُ المستخدم وانتهاءُ وصوله تبقى فيهما البطاقة كاملة والزرّ وحده معطّلاً، وإلا ظنّ القارئ أن المنصة متوقّفة وهي تعمل لغيره. تعطيل الزرّ عرضٌ لا حماية — الرفض الحقيقي في /go/:platformId. يحتاج رموز naf-theme واستيراد app/naf-platform-card.css."
     },
     {
+      "name": "naf-platform-handoff",
+      "type": "registry:ui",
+      "title": "طبقة الانتقال إلى المنصة",
+      "description": "طبقة تغطّي شبكة المنصات من ضغط «دخول» إلى أن تفتح المنصةُ صفحتَها: اسم الوجهة، وعبارةٌ من عشرٍ مسجَّلة لها، ومؤشّر انتظار.",
+      "dependencies": [
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "naf-theme",
+        "naf-platform-card"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/platform-handoff.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/naf/lib/platform-phrases.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "registry/naf/ui/naf-platform-handoff.css",
+          "type": "registry:file",
+          "target": "app/naf-platform-handoff.css"
+        }
+      ],
+      "docs": "تُعرض ولا تُنشئ انتظاراً: الدخول تحويلةٌ إلى نظامٍ آخر تمرّ بـ/go/:id ثم بمبادلة رمز عبور، والطبقة تغطّي انتظاراً قائماً أصلاً. أطلق التحويلة فور الضغط ولا تؤخّرها ريثما تظهر الطبقة. والعبارة تُنتقى بـpickPhrase خارج المكوّن وتُحفظ في حالة الشاشة — انتقاءٌ داخله يُعيد الانتقاء مع كل إعادة رسم فتتبدّل تحت عين القارئ. وهي aria-hidden لأنها زينة لا تحمل معنى، والمنطوق «جارٍ الدخول إلى {المنصة}». والمنصة التي لا عباراتِ لها تعرض عنوانها وحده ولا تستعير عبارات أختها. أعِد الطبقة إلى الإخفاء على pageshow: العودة بزرّ الرجوع تستعيد الصفحة من الكاش والطبقة عليها. يحتاج رموز naf-theme واستيراد app/naf-platform-handoff.css و app/naf-platform-card.css."
+    },
+    {
       "name": "naf-platform-grid",
       "type": "registry:ui",
       "title": "شبكة المنصات",

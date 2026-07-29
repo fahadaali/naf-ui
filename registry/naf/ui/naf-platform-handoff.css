@@ -1,0 +1,71 @@
+/* ============================================================
+   حركة طبقة الانتقال إلى المنصة.
+
+   هنا لا في المكوّن، على نمط ‎naf-app-shell.css‎ نفسه: ‎@keyframes‎ لا يُكتب
+   صنفاً في Tailwind، ومنصةٌ تكتب CSS خاماً تستهلك الملف كما تستهلكه منصةُ
+   React — فالحركة واحدة في الطرفين لا نسختان تفترقان.
+
+   المُدَد والمنحنى من ‎naf-theme.css‎: ‎--motion-enter‎ لظهور الطبقة،
+   و‎--motion-rise‎ لاستقرار محتواها، و‎--motion-breath‎ للدوران المتكرّر.
+   لا مدّة تُكتب رقماً هنا.
+
+   والحركات كلها رأسية أو دائرية بلا مكوّن أفقيّ: طبقةٌ تنزلق من الجانب
+   تحتاج قلباً في RTL، وهذه لا تحتاجه فتستوي في الاتجاهين بتعريف واحد.
+   ============================================================ */
+
+@keyframes naf-handoff-veil {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes naf-handoff-rise {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes naf-handoff-breath {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+
+@keyframes naf-handoff-spin {
+  to { transform: rotate(360deg); }
+}
+
+.naf-handoff-veil {
+  animation: naf-handoff-veil var(--motion-enter) var(--motion-ease) both;
+}
+
+.naf-handoff-rise {
+  animation: naf-handoff-rise var(--motion-rise) var(--motion-ease) both;
+}
+
+/* العبارة تستقرّ بعد اسم المنصة لا معه: الاسم يقول إلى أين، والعبارة زينةٌ
+   تلحق. والتأخير نصفُ مدّة الاستقرار — مشتقٌّ من الرمز لا رقمٌ ثانٍ. */
+.naf-handoff-rise-late {
+  animation: naf-handoff-rise var(--motion-rise) var(--motion-ease) both;
+  animation-delay: calc(var(--motion-rise) / 2);
+}
+
+.naf-handoff-breath {
+  animation: naf-handoff-breath var(--motion-breath) var(--motion-ease) infinite;
+}
+
+/* الدوران خطّيّ لا بمنحنى: المنحنى يجعل الحلقة تتلكّأ عند كل دورة فتُقرأ
+   تعثّراً في الاتصال لا انتظاراً. وهو غير قابل للقلب — القاعدة في
+   naf-icons.md: الساعات ومؤشّرات الانتظار لا تُقلب في الاتجاه. */
+.naf-handoff-spin {
+  animation: naf-handoff-spin var(--motion-breath) linear infinite;
+}
+
+/* من طلب تقليل الحركة يرى الطبقة نفسها كاملةً بلا انتقال: الظهور يبقى
+   لأن اختفاءَه يجعل الطبقة تقفز، والانزلاق والتنفّس والدوران تسكن.
+   وحذفُ الطبقة كلّها ليس بديلاً — الانتظار قائمٌ وتغطيتُه هي الغرض. */
+@media (prefers-reduced-motion: reduce) {
+  .naf-handoff-rise,
+  .naf-handoff-rise-late,
+  .naf-handoff-breath,
+  .naf-handoff-spin {
+    animation: naf-handoff-veil var(--motion-enter) var(--motion-ease) both;
+  }
+}
