@@ -536,6 +536,32 @@
         }
       ],
       "docs": "عمود واحد على الجوّال: البطاقة بشعارها ووصفها بسطرين لا تُقرأ في نصف عرض 375 بكسل. ولا هوامش خارجية — المسافة حول الشبكة مسؤولية العنصر الأب."
+    },
+    {
+      "name": "naf-external-tool-card",
+      "type": "registry:ui",
+      "title": "بطاقة أداة خارجية",
+      "description": "بطاقة عرضية تحت شبكة المنصات، تحمل أداةً يملكها طرف آخر يُنتقل إليها برابط مباشر — لا هوية موحّدة ولا حالات ولا شارة.",
+      "dependencies": [
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "naf-theme"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/external-tool-card.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/naf/ui/naf-platform-card.css",
+          "type": "registry:file",
+          "target": "app/naf-platform-card.css"
+        }
+      ],
+      "docs": "ليست بطاقةَ منصة ولا تُبنى منها: المنصة تُدخَل بهوية موحّدة عبر /go/:id فزرّها «دخول» وحالتها من الخادم، وهذه رابط مباشر خارج النظام فزرّها «انتقال» ويفتح في لسان جديد. تحمل تدرّج --grad-external وهو خارج تدرّجات المنصات الخمسة ولا يدخل منتقي لوحة الإدارة. الشعار يأتي من naf-brand-marks داخل رقعة لون العلامة. يحتاج رموز naf-theme واستيراد app/naf-platform-card.css."
     }
   ]
 }

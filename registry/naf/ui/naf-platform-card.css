@@ -8,6 +8,10 @@
    لكل تدرّج هو ما يجعل القيمة المخزَّنة قابلة للاستهلاك دون قيمة خام.
 
    خمسة لا سادس لها. إضافة تدرّج قرارٌ يُتّخذ في naf-theme.css أولاً.
+
+   و‎.naf-grad-external‎ أسفلها ليس سادسها: لا يُخزَّن في grad_token ولا
+   يظهر في المنتقي، وإنما يحمله عنصر ‎naf-external-tool-card‎ ثابتاً. وُضع
+   هنا لأن مصدره الرمز نفسه وسطرٌ في ملفين يفترق.
    ============================================================ */
 
 .naf-grad-1 { background-image: var(--grad-1); }
@@ -15,3 +19,5 @@
 .naf-grad-3 { background-image: var(--grad-3); }
 .naf-grad-4 { background-image: var(--grad-4); }
 .naf-grad-5 { background-image: var(--grad-5); }
+
+.naf-grad-external { background-image: var(--grad-external); }
