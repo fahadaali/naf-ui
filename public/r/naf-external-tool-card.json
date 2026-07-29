@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "naf-external-tool-card",
+  "title": "بطاقة أداة خارجية",
+  "description": "بطاقة عرضية تحت شبكة المنصات، تحمل أداةً يملكها طرف آخر يُنتقل إليها برابط مباشر — لا هوية موحّدة ولا حالات ولا شارة.",
+  "dependencies": [
+    "lucide-react@1.27.0"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button",
+    "naf-theme"
+  ],
+  "files": [
+    {
+      "path": "registry/naf/ui/external-tool-card.tsx",
+      "content": "import * as React from \"react\"\nimport { ExternalLink } from \"lucide-react\"\n\nimport { cn } from \"@/registry/naf/lib/utils\"\nimport { Button } from \"@/registry/naf/ui/button\"\n\n// بطاقة أداة خارجية — بطاقة عرضية تحت شبكة المنصات في مركز الهوية.\n//\n// ليست بطاقةَ منصة ولا تُبنى منها: منصات ناف تُدخَل بهوية موحّدة عبر\n// ‎/go/:id‎ فزرّها «دخول» وحالتها تأتي من الخادم، وهذه أداةٌ يملكها طرفٌ\n// آخر يُنتقل إليها برابط مباشر — لا هوية موحّدة، ولا حالات أربع، ولا\n// شارة. جمعهما في عنصر واحد يعني حقولاً معطّلة في كل استعمال.\n//\n// والفرق يُقرأ من الشكل قبل النصّ: عرضٌ كامل تحت الشبكة لا بطاقةً في\n// صفّها، وتدرّجٌ ‎--grad-external‎ خارج تدرّجات المنصات الخمسة.\n//\n// المصطلحات من naf-terms.md والأيقونات من naf-icons.md.\n\nconst TERMS = {\n  go: \"انتقال\",\n}\n\nexport interface ExternalToolCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** اسم الأداة كما هو مسجَّل في naf-terms.md. */\n  nameAr: string\n  /** سطرٌ واحد يقول ما هي. */\n  description?: string | null\n  /** الوجهة — رابط مباشر إلى الأداة. */\n  href: string\n  /** شعار الأداة من naf-brand-marks، داخل رقعة لونها لون العلامة. */\n  mark?: React.ReactNode\n}\n\nexport const ExternalToolCard = React.forwardRef<HTMLDivElement, ExternalToolCardProps>(\n  ({ nameAr, description, href, mark, className, ...props }, ref) => (\n    <div\n      ref={ref}\n      className={cn(\n        /* عمودٌ على الجوّال وصفٌّ من ‎sm‎ فصاعداً: الشعار والاسم والوصف\n           والزرّ في سطر واحد لا يُقرأ عند 375 بكسل. */\n        \"flex flex-col gap-4 rounded-lg p-5 text-start shadow-sm\",\n        \"naf-grad-external text-surface-deep-foreground\",\n        \"sm:flex-row sm:items-center\",\n        className\n      )}\n      {...props}\n    >\n      {mark ? (\n        /* رقعة العلامة: خلفيتها لون العلامة ومقدّمتها ‎--brand-on-color‎ —\n           القاعدة المسجّلة لشعارات الأطراف الأخرى، ولا تُلوَّن بالثيم. */\n        <span\n          aria-hidden=\"true\"\n          className=\"flex size-12 shrink-0 items-center justify-center rounded-md bg-brand-basecamp text-brand-on-color\"\n        >\n          {mark}\n        </span>\n      ) : null}\n\n      <div className=\"flex-1 space-y-1\">\n        <h3 className=\"text-lg font-semibold\">{nameAr}</h3>\n        {description ? (\n          <p className=\"text-sm text-surface-deep-muted\">{description}</p>\n        ) : null}\n      </div>\n\n      {/* الزرّ في نهاية السطر — يسارُ الشاشة في RTL ويمينُها في LTR، بلا\n          خاصية اتجاه فيزيائية: ترتيبُه آخرَ العناصر هو ما يضعه هناك.\n          ويفتح في لسان جديد لأن الوجهة خارج النظام، ومعه ‎rel‎ يقطع وصول\n          الصفحة الجديدة إلى ‎window.opener‎. */}\n      <Button asChild className=\"w-full shrink-0 sm:w-auto\">\n        <a href={href} target=\"_blank\" rel=\"noopener noreferrer\">\n          <ExternalLink aria-hidden=\"true\" />\n          {TERMS.go}\n        </a>\n      </Button>\n    </div>\n  )\n)\nExternalToolCard.displayName = \"ExternalToolCard\"\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/naf/ui/naf-platform-card.css",
+      "content": "/* ============================================================\n   أصناف تدرّجات بطاقات المنصات.\n\n   الرموز نفسها في naf-theme.css — وهذه أصنافٌ تستهلكها لا تعرّفها.\n   وجودها هنا لا في المكوّن مقصود: التدرّج يُختار بقيمة نصّية مخزَّنة في\n   قاعدة البيانات (grad_token)، والقيمة النصّية لا تصلح صنفاً ديناميكياً\n   في Tailwind لأن الماسح لا يرى إلا الأصناف المكتوبة حرفياً. فصنفٌ ثابت\n   لكل تدرّج هو ما يجعل القيمة المخزَّنة قابلة للاستهلاك دون قيمة خام.\n\n   خمسة لا سادس لها. إضافة تدرّج قرارٌ يُتّخذ في naf-theme.css أولاً.\n\n   و‎.naf-grad-external‎ أسفلها ليس سادسها: لا يُخزَّن في grad_token ولا\n   يظهر في المنتقي، وإنما يحمله عنصر ‎naf-external-tool-card‎ ثابتاً. وُضع\n   هنا لأن مصدره الرمز نفسه وسطرٌ في ملفين يفترق.\n   ============================================================ */\n\n.naf-grad-1 { background-image: var(--grad-1); }\n.naf-grad-2 { background-image: var(--grad-2); }\n.naf-grad-3 { background-image: var(--grad-3); }\n.naf-grad-4 { background-image: var(--grad-4); }\n.naf-grad-5 { background-image: var(--grad-5); }\n\n.naf-grad-external { background-image: var(--grad-external); }\n",
+      "type": "registry:file",
+      "target": "app/naf-platform-card.css"
+    }
+  ],
+  "docs": "ليست بطاقةَ منصة ولا تُبنى منها: المنصة تُدخَل بهوية موحّدة عبر /go/:id فزرّها «دخول» وحالتها من الخادم، وهذه رابط مباشر خارج النظام فزرّها «انتقال» ويفتح في لسان جديد. تحمل تدرّج --grad-external وهو خارج تدرّجات المنصات الخمسة ولا يدخل منتقي لوحة الإدارة. الشعار يأتي من naf-brand-marks داخل رقعة لون العلامة. يحتاج رموز naf-theme واستيراد app/naf-platform-card.css.",
+  "type": "registry:ui"
+}
