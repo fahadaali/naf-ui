@@ -109,3 +109,40 @@ export function pickPhrase(platformId: string, previous?: string | null): string
      فيبقى واحدٌ على الأقل. */
   return pool[Math.floor(Math.random() * pool.length)] ?? null
 }
+
+const MEMORY_PREFIX = "naf-phrase:"
+
+/**
+ * عبارةٌ لدخولٍ يجري الآن، تتذكّر سابقتها عبر تحميلات الصفحة.
+ *
+ * ولماذا لا تكفي حالةُ الشاشة: الضغطة تُغادر الصفحة إلى المنصة. فحالةُ
+ * React تموت مع المستند، والعودةُ إلى الشبكة تبدأ من `null` — فتكون
+ * `previous` فارغةً في كل دخول، وقاعدةُ «لا تتكرّر مرّتين متتاليتين»
+ * المسجَّلة في `naf-terms.md` §١٠ لا تسري أبداً وهي مكتوبة.
+ *
+ * و`sessionStorage` لا `localStorage`: الذاكرة تخصّ جلسة التصفّح، ولا معنى
+ * لأن يتذكّر النظام بعد أسبوع أيَّ عبارةٍ رآها القارئ آخر مرّة.
+ *
+ * وتعذّرُ التخزين — وضعُ التصفّح الخاصّ، أو منعُ المواقع من التخزين —
+ * يُسقط التذكّر ولا يُسقط العبارة: تُنتقى بلا `previous` كما كانت.
+ */
+export function pickPhraseForVisit(platformId: string): string | null {
+  const key = MEMORY_PREFIX + platformId
+
+  let previous: string | null = null
+  try {
+    previous = sessionStorage.getItem(key)
+  } catch {
+    /* التخزين غير متاح — يُنتقى بلا ذاكرة. */
+  }
+
+  const phrase = pickPhrase(platformId, previous)
+
+  try {
+    if (phrase) sessionStorage.setItem(key, phrase)
+  } catch {
+    /* الكتابة تفشل كما تفشل القراءة، والعبارة منتقاةٌ سلفاً. */
+  }
+
+  return phrase
+}
