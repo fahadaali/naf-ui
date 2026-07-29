@@ -469,6 +469,32 @@
       "docs": "ثلاث حالات لا حالتان: حالتان تحبسان القارئ خارج «يتبع النظام» عند تغيّر تفضيل نظامه. الأيقونات Sun وMoon وMonitor ولا تُقلب، والمصطلحات من naf-terms.md. يحتاج رموز naf-theme."
     },
     {
+      "name": "naf-app-shell",
+      "type": "registry:ui",
+      "title": "هيكل ناف",
+      "description": "الشريط الجانبي والترويسة وقائمة الحساب وحاضن المحتوى. نقطة انكسار واحدة ودرج واحد ومكان واحد لتسجيل الخروج في المنصات الخمس.",
+      "dependencies": [
+        "lucide-react@1.27.0"
+      ],
+      "registryDependencies": [
+        "utils",
+        "naf-theme",
+        "naf-theme-toggle"
+      ],
+      "files": [
+        {
+          "path": "registry/naf/ui/app-shell.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/naf/ui/naf-app-shell.css",
+          "type": "registry:file",
+          "target": "app/naf-app-shell.css"
+        }
+      ],
+      "docs": "الأنماط في naf-app-shell.css لا في المكوّن: ثلاث من المنصات الخمس تكتب CSS خاماً أو HTML ثابتاً ولا تستهلك React، فلو حمل المكوّن أصنافه لانقسم الهيكل نسختين. استورد app/naf-app-shell.css ولو كنت تستهلك المكوّن. نقطة الانكسار 900 بكسل مكتوبة رقماً في الملف مرّة واحدة لأن @media لا تقرأ var() — لا تكرّرها في منصة، واسأل matchMedia أو استهلك naf-only-mobile وnaf-only-desktop. التنقّل غير مفروض: المنصة تبني رابطها بموجّهها وتأخذ الصنف من navLinkClassName. وتسجيل الخروج داخل قائمة الحساب لا زرّاً ظاهراً — إجراء لا رجعة فيه لا يُترك تحت نقرة سهو. وحدود عرض المحتوى ثلاث درجات مسجّلة تُختار بـPage width لا برقم يُكتب في الشاشة."
+    },
+    {
       "name": "naf-platform-card",
       "type": "registry:ui",
       "title": "بطاقة منصة",
