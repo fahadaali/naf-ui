@@ -42,10 +42,16 @@ export function useShell(): ShellContextValue {
   return ctx
 }
 
-export interface AppShellProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AppShellProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * ارتفاع الشاشة لا ارتفاع المحتوى — للمنصات التي تمرّر شاشاتها
+   * بنفسها (`AppContent flush`). تركُها يجعل الصفحة تمتدّ بطول محتواها.
+   */
+  fixed?: boolean
+}
 
 export const AppShell = React.forwardRef<HTMLDivElement, AppShellProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ fixed = false, className, children, ...props }, ref) => {
     const [open, setOpen] = React.useState(false)
 
     // Esc يغلق الدرج. الحجاب يُغلقه بالنقر، ولوحة المفاتيح تحتاج مخرجاً
@@ -72,7 +78,11 @@ export const AppShell = React.forwardRef<HTMLDivElement, AppShellProps>(
 
     return (
       <ShellContext.Provider value={{ open, setOpen }}>
-        <div ref={ref} className={cn("naf-shell", className)} {...props}>
+        <div
+          ref={ref}
+          className={cn("naf-shell", fixed && "naf-shell--fixed", className)}
+          {...props}
+        >
           {children}
         </div>
       </ShellContext.Provider>
@@ -373,9 +383,18 @@ export function AccountMenu({
 
 /* ── المحتوى ── */
 
-export const AppContent = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
-  ({ className, ...props }, ref) => (
-    <main ref={ref} className={cn("naf-content", className)} {...props} />
+export interface AppContentProps extends React.HTMLAttributes<HTMLElement> {
+  /** شاشة تدير حشوها وتمريرها بنفسها — محادثة أو محرّر أو لوح. */
+  flush?: boolean
+}
+
+export const AppContent = React.forwardRef<HTMLElement, AppContentProps>(
+  ({ flush = false, className, ...props }, ref) => (
+    <main
+      ref={ref}
+      className={cn("naf-content", flush && "naf-content--flush", className)}
+      {...props}
+    />
   )
 )
 AppContent.displayName = "AppContent"
