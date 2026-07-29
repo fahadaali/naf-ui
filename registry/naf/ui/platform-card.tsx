@@ -54,11 +54,35 @@ export interface PlatformCardProps extends React.HTMLAttributes<HTMLDivElement> 
   note?: string | null
   /** وجهة الزرّ حين تكون المنصة متاحة — /go/:platformId */
   href: string
+  /**
+   * يُنادى عند ضغطةٍ تفتح الوجهة في اللسان نفسه، وعندها وحدها.
+   *
+   * موضعه هنا لا عند المستهلك لأن شرط «اللسان نفسه» يُفحص مرة واحدة:
+   * ضغطةٌ بزرّ أوسط أو مع Ctrl أو Cmd أو Shift تفتح لساناً جديداً ويبقى
+   * القارئ في الشبكة — فطبقةُ انتقالٍ تظهر له عندئذٍ تغطّي صفحةً لن
+   * تُغادَر، ولا شيء يزيلها. وكلُّ مستهلكٍ يفحص ذلك بنفسه ينساه مرة.
+   *
+   * والرابط يبقى رابطاً: لا `preventDefault` هنا، فالتصفّح يتمّ كما هو
+   * ولو تعطّل التنفيذ. والمستهلك يعرض ما يشاء ولا يعترض التحويلة.
+   */
+  onEnter?: (event: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
 export const PlatformCard = React.forwardRef<HTMLDivElement, PlatformCardProps>(
   (
-    { nameAr, description, logoUrl, bannerUrl, gradToken, state, note, href, className, ...props },
+    {
+      nameAr,
+      description,
+      logoUrl,
+      bannerUrl,
+      gradToken,
+      state,
+      note,
+      href,
+      onEnter,
+      className,
+      ...props
+    },
     ref
   ) => {
     const gradientClass =
@@ -125,7 +149,21 @@ export const PlatformCard = React.forwardRef<HTMLDivElement, PlatformCardProps>(
 
           {available ? (
             <Button asChild className="w-full">
-              <a href={href}>{TERMS.enter}</a>
+              <a
+                href={href}
+                onClick={(event) => {
+                  /* اللسان نفسه وحده: الزرّ الأيسر بلا مُعدِّل. وما عداه
+                     يفتح لساناً جديداً ويبقى القارئ هنا. و`defaultPrevented`
+                     يُحترم — مستمعٌ سابق ألغى التصفّح فلا انتقال يُعلن. */
+                  if (!onEnter) return
+                  if (event.defaultPrevented) return
+                  if (event.button !== 0) return
+                  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+                  onEnter(event)
+                }}
+              >
+                {TERMS.enter}
+              </a>
             </Button>
           ) : (
             <Button disabled className="w-full">
