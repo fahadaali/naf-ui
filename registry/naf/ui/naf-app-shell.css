@@ -556,11 +556,16 @@
 [dir='rtl'] .lucide-external-link,
 [dir='rtl'] .lucide-reply { transform: scaleX(-1); }
 
-/* (ب) اتجاه مزدوج — الاسم مختار بمظهره في RTL، فيُقلب في LTR */
+/* (ب) اتجاه مزدوج — الاسم مختار بمظهره في RTL، فيُقلب في LTR.
+   وأيقونتا المحاذاة منهما: `AlignRight` تُرسم أسطراً محاذاةً لليمين
+   وهي «بداية السطر» في العربية، و`AlignLeft` نهايته. و`AlignCenter`
+   متناظرة فلا تدخل — قلبُها لا يغيّر شيئاً ويُوهم أنها اتجاهية. */
 [dir='ltr'] .lucide-arrow-left,
 [dir='ltr'] .lucide-arrow-right,
 [dir='ltr'] .lucide-chevron-left,
-[dir='ltr'] .lucide-chevron-right { transform: scaleX(-1); }
+[dir='ltr'] .lucide-chevron-right,
+[dir='ltr'] .lucide-align-left,
+[dir='ltr'] .lucide-align-right { transform: scaleX(-1); }
 
 /* شيفرون قائمة الحساب رأسيّ — لا يُقلب، ودورانه عند الفتح يبقى دورانه.
    القاعدة أعلاه لا تمسّه (`ChevronDown` ليست في الكتلتين)، وهذا توكيد. */
