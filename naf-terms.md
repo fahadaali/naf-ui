@@ -344,6 +344,8 @@
 | Original text | النصّ الأصلي | النصّ قبل التعديل |
 | Superseded text | النصّ السابق | النصّ القديم، النصّ الملغى |
 | Amendment not applied | تعديل غير مطبَّق | تعديل معلّق، تعديل بانتظار |
+| Amendment applied (changed field) | تطبيق التعديل | تنفيذ التعديل |
+| All laws (filter) | كل الأنظمة | الكل، الجميع |
 | Repealed | منسوخة | ملغاة، محذوفة |
 | Deferred effect | نفاذ مؤجل | سريان لاحق، غير نافذ بعد |
 | Duplicate number | رقم مكرّر | مادة مكرّرة |
