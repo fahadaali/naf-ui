@@ -161,6 +161,10 @@ bg-primary  text-primary-foreground  hover:bg-primary/90
 
 **Soft state backgrounds.** `--primary-soft`, `--destructive-soft`, `--success-soft`, `--warning-soft`, `--info-soft` and `--secondary-soft` are derived from their base token by `color-mix` into the card surface, so they follow both modes from a single definition. Use them for status badges and quiet alerts. Never define your own soft value — a hand-picked tint is the exact drift that survives a palette change and then clashes with it.
 
+**Selection and highlight are two states, not one colour.** Selection is what the pointer is over right now and it goes when the hand lifts; a highlight is a mark the reader leaves behind. Use `--selection` with `--selection-foreground` for `::selection`, and `--highlight` with `--highlight-foreground` for a saved mark. Never reach for a `--*-soft` token for either: a platform that set selection to `--primary-soft` found it was also the user-bubble background, so readers selected their own text and saw nothing — colour drawn on the same colour.
+
+Both are opaque, and that is deliberate. A translucent selection composites differently over a card, a tinted bubble and a yellow highlight, so its text contrast cannot be guaranteed in all three; an opaque one covers what it sits on, stays legible everywhere, and the highlight reappears the moment the selection clears. Their hues are held apart — highlighter yellow against selection blue — because the difference between them cannot be carried by lightness alone.
+
 **Appearance follows the reader, and the reader may override it.** Both modes must work, and a platform that offers a switch uses the registered one: three states — system, light, dark — with system as the default, the choice persisted, and `.dark` toggled on the root element. Two states is a trap: a reader whose system is light and who picked light has no way back to "follow the system" when it changes. The terms are in `naf-terms.md` and the icons in `naf-icons.md`; the component is `naf-theme-toggle`.
 
 **Print stays light.** A generated document keeps the light values whatever the reader's mode is — see the print and PDF exception above.
