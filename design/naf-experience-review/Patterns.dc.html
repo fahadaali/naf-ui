@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    /* ══════════════════════════════════════════════════════════════
+       رموز ثيم ناف — منسوخة حرفياً من naf-ui/naf-theme.css.
+       لا تُقرَّر هنا قيمة: لوحُ التصميم يعمل داخل إطار معزول لا يقرأ
+       ورقة أنماط التطبيق، فتُعرَّف الرموز مرّة ثم يُستهلك var() في كل
+       ما بعدها — وهي نفس الحجّة التي تُجيز القيم في ملفّات الطباعة.
+       ══════════════════════════════════════════════════════════════ */
+    .naf {
+      --background: oklch(0.9383 0.0042 236.4993);
+      --foreground: oklch(0.3211 0 0);
+      --card: oklch(1.0000 0 0);
+      --card-foreground: oklch(0.3211 0 0);
+      --primary: oklch(0.5700 0.0904 80.9413);
+      --primary-foreground: oklch(1.0000 0 0);
+      --secondary: oklch(0.9670 0.0029 264.5419);
+      --secondary-foreground: oklch(0.2972 0.0398 246.6002);
+      --muted: oklch(0.9846 0.0017 247.8389);
+      --muted-foreground: oklch(0.5250 0.0234 264.3637);
+      --accent: oklch(0.9119 0.0222 243.8174);
+      --accent-foreground: oklch(0.3791 0.1378 265.5222);
+      --destructive: oklch(0.5930 0.2078 25.3313);
+      --destructive-foreground: oklch(1.0000 0 0);
+      --success: oklch(0.5540 0.1200 155.0000);
+      --success-foreground: oklch(1.0000 0 0);
+      --warning: oklch(0.5720 0.1400 75.0000);
+      --warning-foreground: oklch(1.0000 0 0);
+      --info: oklch(0.5640 0.1200 240.0000);
+      --info-foreground: oklch(1.0000 0 0);
+      --border: oklch(0.8853 0 0);
+      --input: oklch(0.9700 0.0029 264.5420);
+      --ring: oklch(0.5700 0.0904 80.9413);
+      --chart-1: oklch(0.5500 0.1100 80.0000);
+      --chart-2: oklch(0.5400 0.1400 240.0000);
+      --chart-3: oklch(0.5500 0.1500 155.0000);
+      --chart-4: oklch(0.5200 0.1700 300.0000);
+      --chart-5: oklch(0.5500 0.1600 20.0000);
+      --success-strong: oklch(0.5040 0.1200 155.0000);
+      --warning-strong: oklch(0.5220 0.1400 75.0000);
+      --destructive-strong: oklch(0.5430 0.2078 25.3313);
+      --info-strong: oklch(0.5140 0.1200 240.0000);
+      --primary-strong: oklch(0.5200 0.0904 80.9413);
+      --highlight: oklch(0.8600 0.2000 102.0000);
+      --highlight-foreground: oklch(0.2100 0.0250 262.0000);
+      --selection: oklch(0.8300 0.0700 250.0000);
+      --selection-foreground: oklch(0.2100 0.0250 262.0000);
+      --surface-deep: oklch(0.3451 0.0833 260.8804);
+      --surface-deep-foreground: oklch(1.0000 0 0);
+      --surface-deep-muted: oklch(0.9119 0.0222 243.8174);
+      --shadow-elevated: 0px 18px 50px 0px hsl(0 0% 0% / 0.28);
+      --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 1px 2px -1px hsl(0 0% 0% / 0.10);
+      --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 2px 4px -1px hsl(0 0% 0% / 0.10);
+      --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.10), 0px 4px 6px -1px hsl(0 0% 0% / 0.10);
+      --overlay: color-mix(in oklab, hsl(0 0% 0%) 60%, transparent);
+      --radius: 0.5rem;
+      --font-sans: "IBM Plex Sans Arabic", ui-sans-serif, sans-serif, system-ui;
+      --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+      --text-xs: 0.75rem;   --text-xs--line-height: 1.75;
+      --text-sm: 0.875rem;  --text-sm--line-height: 1.75;
+      --text-base: 1rem;    --text-base--line-height: 1.8;
+      --text-lg: 1.125rem;  --text-lg--line-height: 1.75;
+      --text-xl: 1.25rem;   --text-xl--line-height: 1.65;
+      --text-2xl: 1.5rem;   --text-2xl--line-height: 1.5;
+      --text-3xl: 1.875rem; --text-3xl--line-height: 1.4;
+      --text-4xl: 2.25rem;  --text-4xl--line-height: 1.3;
+      --text-5xl: 3rem;     --text-5xl--line-height: 1.2;
+      --spacing: 0.25rem;
+      --space-1: calc(var(--spacing) * 1);
+      --space-2: calc(var(--spacing) * 2);
+      --space-3: calc(var(--spacing) * 3);
+      --space-4: calc(var(--spacing) * 4);
+      --space-5: calc(var(--spacing) * 5);
+      --space-6: calc(var(--spacing) * 6);
+      --space-7: calc(var(--spacing) * 7);
+      --space-9: calc(var(--spacing) * 9);
+      --motion-enter: 240ms;
+      --motion-rise: 520ms;
+      --motion-breath: 2400ms;
+      --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      /* مشتقّة لا مستقلّة — تتبع الوضعين بتعريف واحد */
+      --primary-soft: color-mix(in oklab, var(--primary) 14%, var(--card));
+      --secondary-soft: color-mix(in oklab, var(--secondary) 14%, var(--card));
+      --destructive-soft: color-mix(in oklab, var(--destructive) 14%, var(--card));
+      --success-soft: color-mix(in oklab, var(--success) 14%, var(--card));
+      --warning-soft: color-mix(in oklab, var(--warning) 14%, var(--card));
+      --info-soft: color-mix(in oklab, var(--info) 14%, var(--card));
+      --grad-1: linear-gradient(to bottom, var(--chart-1), color-mix(in oklab, var(--chart-1) 45%, var(--surface-deep)));
+      --grad-2: linear-gradient(to bottom, var(--chart-2), color-mix(in oklab, var(--chart-2) 45%, var(--surface-deep)));
+      --grad-3: linear-gradient(to bottom, var(--chart-3), color-mix(in oklab, var(--chart-3) 45%, var(--surface-deep)));
+      --grad-4: linear-gradient(to bottom, var(--chart-4), color-mix(in oklab, var(--chart-4) 45%, var(--surface-deep)));
+      --grad-5: linear-gradient(to bottom, var(--chart-5), color-mix(in oklab, var(--chart-5) 45%, var(--surface-deep)));
+    }
+    .naf.darkmode {
+      --background: oklch(0.2598 0.0306 262.6666);
+      --foreground: oklch(0.9219 0 0);
+      --card: oklch(0.3106 0.0301 268.6365);
+      --card-foreground: oklch(0.9219 0 0);
+      --primary: oklch(0.7300 0.0904 80.9413);
+      --primary-foreground: oklch(0.2100 0.0250 262.0000);
+      --secondary: oklch(0.3550 0.0280 265.0000);
+      --secondary-foreground: oklch(0.9219 0 0);
+      --muted: oklch(0.3095 0.0266 266.7132);
+      --muted-foreground: oklch(0.7155 0 0);
+      --accent: oklch(0.3380 0.0589 267.5867);
+      --accent-foreground: oklch(0.7050 0.0904 80.9413);
+      --destructive: oklch(0.7000 0.1900 25.3313);
+      --destructive-foreground: oklch(0.2100 0.0250 262.0000);
+      --success: oklch(0.7200 0.1300 155.0000);
+      --success-foreground: oklch(0.2100 0.0250 262.0000);
+      --warning: oklch(0.7800 0.1300 75.0000);
+      --warning-foreground: oklch(0.2100 0.0250 262.0000);
+      --info: oklch(0.7300 0.1100 240.0000);
+      --info-foreground: oklch(0.2100 0.0250 262.0000);
+      --success-strong: oklch(0.7300 0.1300 155.0000);
+      --warning-strong: oklch(0.7800 0.1300 75.0000);
+      --destructive-strong: oklch(0.8050 0.1900 25.3313);
+      --info-strong: oklch(0.7400 0.1100 240.0000);
+      --primary-strong: oklch(0.7450 0.0904 80.9413);
+      --highlight: oklch(0.7800 0.1700 100.0000);
+      --highlight-foreground: oklch(0.2100 0.0250 262.0000);
+      --selection: oklch(0.4800 0.0800 255.0000);
+      --selection-foreground: oklch(0.9700 0 0);
+      --border: oklch(0.3843 0.0301 269.7337);
+      --input: oklch(0.3843 0.0301 269.7337);
+      --ring: oklch(0.7300 0.0904 80.9413);
+      --chart-1: oklch(0.6600 0.1100 80.0000);
+      --chart-2: oklch(0.6400 0.1400 240.0000);
+      --chart-3: oklch(0.6500 0.1500 155.0000);
+      --chart-4: oklch(0.6200 0.1600 300.0000);
+      --chart-5: oklch(0.6300 0.1500 20.0000);
+    }
+
+    body { margin: 0; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--primary-strong); }
+    .naf ::selection { background: var(--selection); color: var(--selection-foreground); }
+    .naf { font-family: var(--font-sans); font-size: var(--text-base); line-height: 1.8; }
+    .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+    @keyframes nafspin { to { transform: rotate(360deg); } }
+    [dir="ltr"] .mirror { transform: scaleX(-1); }
+  </style>
+</helmet>
+
+<div class="naf {{mode}}" dir="{{dirAttr}}" style="width: 1200px; min-height: 1180px; background: var(--background); color: var(--foreground); padding: var(--space-9); box-sizing: border-box; display: flex; flex-direction: column; gap: var(--space-6);">
+  <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+    <h1 style="margin: 0; font-size: var(--text-3xl); line-height: var(--text-3xl--line-height); font-weight: 600;">الأنماط المشتركة</h1>
+    <p style="margin: 0; max-width: 88ch; font-size: var(--text-base); line-height: var(--text-base--line-height); color: var(--muted-foreground);">ما تتقاسمه المنصات الخمس. كل نصٍّ هنا مسجَّل في <bdi>naf-terms.md</bdi>، وكل أيقونة في <bdi>naf-icons.md</bdi> بمعناها المسجَّل، وكل قيمة من <bdi>naf-theme.css</bdi>.</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5);">
+    <section style="grid-column: span 2; background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);"><div style="display: flex; flex-direction: column; gap: var(--space-1);"><h2 style="margin: 0; font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-weight: 600;">الحالات على الخلفيات الناعمة</h2><p style="margin: 0; font-size: var(--text-xs); line-height: var(--text-xs--line-height); color: var(--muted-foreground);">النصّ والأيقونة بـ--*-strong لا بالرمز الأساس: هذا على خلفيته الناعمة يعطي 3.7 فقط، وحدّ نصّ الشارة 4.5. ومعنى الحالة يحمله ثلاثةٌ معاً — لون وأيقونة ونصّ — لا اللون وحده.</p></div><div style="display: flex; flex-wrap: wrap; gap: var(--space-3);"><span style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--success-soft); border-radius: var(--radius); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: 500; color: var(--success-strong);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--success-strong);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>نشط</span><span style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--success-soft); border-radius: var(--radius); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: 500; color: var(--success-strong);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--success-strong);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>نجح</span><span style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--destructive-soft); border-radius: var(--radius); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: 500; color: var(--destructive-strong);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--destructive-strong);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><line x1="12" x2="12" y1="8" y2="12" /><line x1="12" x2="12.01" y1="16" y2="16" /></svg>فشل</span><span style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--warning-soft); border-radius: var(--radius); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: 500; color: var(--warning-strong);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--warning-strong);" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>تحذير</span><span style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--info-soft); border-radius: var(--radius); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: 500; color: var(--info-strong);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--info-strong);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>معلومة</span><span style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--muted); border-radius: var(--radius); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: 500; color: var(--muted-foreground);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--muted-foreground);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><line x1="9" x2="15" y1="15" y2="9" /></svg>معطّل</span><span style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--muted); border-radius: var(--radius); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: 500; color: var(--muted-foreground);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--muted-foreground);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>غير معروف</span><span style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--muted); border-radius: var(--radius); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: 500; color: var(--muted-foreground);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--muted-foreground);" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg>جارٍ التنفيذ</span></div></section>
+    <section style="grid-column: span 2; background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);"><div style="display: flex; flex-direction: column; gap: var(--space-1);"><h2 style="margin: 0; font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-weight: 600;">تعذّر الدخول — أربعة رموز لا خامس لها</h2><p style="margin: 0; font-size: var(--text-xs); line-height: var(--text-xs--line-height); color: var(--muted-foreground);">الصفحة تعرض السبب وحده: لا رمز خطأ تقنياً، ولا تلميح إلى أنّ للمنصة أعضاء غيره.</p></div><div style="display: flex; flex-direction: column;"><div style="display: grid; grid-template-columns: 112px 1fr; gap: var(--space-4); align-items: center; padding-block: var(--space-2); border-block-end: 1px solid color-mix(in oklab, var(--border) 60%, transparent);"><code class="mono" style="font-size: var(--text-xs); color: var(--muted-foreground);"><bdi>inactive</bdi></code><span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); line-height: var(--text-sm--line-height); color: var(--muted-foreground);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--muted-foreground);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><line x1="9" x2="15" y1="15" y2="9" /></svg>عضويتك في هذه المنصة معطّلة. راجع مسؤول المنصة.</span></div><div style="display: grid; grid-template-columns: 112px 1fr; gap: var(--space-4); align-items: center; padding-block: var(--space-2); border-block-end: 1px solid color-mix(in oklab, var(--border) 60%, transparent);"><code class="mono" style="font-size: var(--text-xs); color: var(--muted-foreground);"><bdi>not_member</bdi></code><span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); line-height: var(--text-sm--line-height); color: var(--destructive-strong);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--destructive-strong);" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m14.5 9.5-5 5" /><path d="m9.5 9.5 5 5" /></svg>لا تملك صلاحية الوصول لهذه المنصة</span></div><div style="display: grid; grid-template-columns: 112px 1fr; gap: var(--space-4); align-items: center; padding-block: var(--space-2); border-block-end: 1px solid color-mix(in oklab, var(--border) 60%, transparent);"><code class="mono" style="font-size: var(--text-xs); color: var(--muted-foreground);"><bdi>bad_state</bdi></code><span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); line-height: var(--text-sm--line-height); color: var(--destructive-strong);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--destructive-strong);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><line x1="12" x2="12" y1="8" y2="12" /><line x1="12" x2="12.01" y1="16" y2="16" /></svg>انتهت جلسة دخولك. سجّل الدخول من جديد</span></div><div style="display: grid; grid-template-columns: 112px 1fr; gap: var(--space-4); align-items: center; padding-block: var(--space-2); border-block-end: 1px solid color-mix(in oklab, var(--border) 60%, transparent);"><code class="mono" style="font-size: var(--text-xs); color: var(--muted-foreground);"><bdi>auth_failed</bdi></code><span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); line-height: var(--text-sm--line-height); color: var(--destructive-strong);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--destructive-strong);" aria-hidden="true"><circle cx="12" cy="12" r="10" /><line x1="12" x2="12" y1="8" y2="12" /><line x1="12" x2="12.01" y1="16" y2="16" /></svg>تعذّر التحقق من دخولك. أعد المحاولة.</span></div></div></section>
+    <section style="grid-column: span 1; background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);"><div style="display: flex; flex-direction: column; gap: var(--space-1);"><h2 style="margin: 0; font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-weight: 600;">الشاشة الفارغة دعوةٌ للعمل</h2><p style="margin: 0; font-size: var(--text-xs); line-height: var(--text-xs--line-height); color: var(--muted-foreground);">النمط: نفيٌ بلا «توجد» + «بعد.» + فعلُ أمرٍ يبدأ العمل. وممنوع «لا توجد بيانات» — صحيحةٌ وعديمة الفائدة.</p></div><div style="display: flex; flex-direction: column; gap: var(--space-3);"><div style="background: var(--muted); border-radius: var(--radius); padding: var(--space-5); display: flex; align-items: flex-start; gap: var(--space-3);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--muted-foreground); margin-block-start: 4px;" aria-hidden="true"><path d="M10 12h4" /><path d="M10 8h4" /><path d="M14 21v-3a2 2 0 0 0-4 0v3" /><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></svg><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height);">لم تُضِف أي عميل بعد. ابدأ بإضافة أول عميل.</span></div><div style="background: var(--muted); border-radius: var(--radius); padding: var(--space-5); display: flex; align-items: flex-start; gap: var(--space-3);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--muted-foreground); margin-block-start: 4px;" aria-hidden="true"><path d="M10 12h4" /><path d="M10 8h4" /><path d="M14 21v-3a2 2 0 0 0-4 0v3" /><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" /><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /></svg><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height);">لا نتائج مطابقة لبحثك. جرّب كلمات أخرى.</span></div></div></section>
+    <section style="grid-column: span 1; background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);"><div style="display: flex; flex-direction: column; gap: var(--space-1);"><h2 style="margin: 0; font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-weight: 600;">العزل الاتجاهي</h2><p style="margin: 0; font-size: var(--text-xs); line-height: var(--text-xs--line-height); color: var(--muted-foreground);">بدّل الاتجاه من الشريط أعلى اللوح وراقب العمود الأحمر. المبلغ هنا بالبديل ر.س: رمز U+20C1 يأتي من naf-currency بخطٍّ مثبّت لا يُحمَّل داخل هذا الإطار، والبديل هو ما يعرضه المكوّن نفسه حين يتعذّر الخط.</p></div><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);"><div style="display: flex; flex-direction: column; gap: var(--space-2); background: var(--destructive-soft); border-radius: var(--radius); padding: var(--space-4);"><span style="font-size: var(--text-xs); line-height: var(--text-xs--line-height); font-weight: 600; color: var(--destructive-strong);">بلا عزل</span><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height);">قضية رقم 2291/ت/1447</span><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height);">الملف report.pdf جاهز</span><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height);">الجلسة 2026/07/26 (1448/02/11 هـ)</span><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-variant-numeric: tabular-nums;">المبلغ 12,400.00 ر.س</span></div><div style="display: flex; flex-direction: column; gap: var(--space-2); background: var(--success-soft); border-radius: var(--radius); padding: var(--space-4);"><span style="font-size: var(--text-xs); line-height: var(--text-xs--line-height); font-weight: 600; color: var(--success-strong);">بـ&lt;bdi&gt;</span><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height);">قضية رقم <bdi>2291/ت/1447</bdi></span><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height);">الملف <bdi>report.pdf</bdi> جاهز</span><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height);">الجلسة <bdi>2026/07/26</bdi> (<bdi>1448/02/11 هـ</bdi>)</span><span style="font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-variant-numeric: tabular-nums;">المبلغ <bdi>12,400.00 ر.س</bdi></span></div></div></section>
+    <section style="grid-column: span 1; background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);"><div style="display: flex; flex-direction: column; gap: var(--space-1);"><h2 style="margin: 0; font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-weight: 600;">ثلاثة ارتفاعات لا رابع</h2><p style="margin: 0; font-size: var(--text-xs); line-height: var(--text-xs--line-height); color: var(--muted-foreground);">md هو العادي. وعلى الهاتف يُختار lg لأن مساحة اللمس لا تنزل عن 44px — وهي درجةٌ مسجَّلة لا استثناء يُخترع.</p></div><div style="display: flex; flex-direction: column; gap: var(--space-4);"><div style="display: flex; align-items: center; gap: var(--space-4);"><code class="mono" style="width: 32px; font-size: var(--text-xs); color: var(--muted-foreground);">sm</code><button style="height: 32px; padding-inline: var(--space-5); border: none; border-radius: var(--radius); background: var(--primary); color: var(--primary-foreground); font-family: inherit; font-size: var(--text-sm); font-weight: 600; cursor: pointer;">حفظ</button><span class="mono" style="font-size: var(--text-xs); color: var(--muted-foreground);"><bdi>32px</bdi></span></div><div style="display: flex; align-items: center; gap: var(--space-4);"><code class="mono" style="width: 32px; font-size: var(--text-xs); color: var(--muted-foreground);">md</code><button style="height: 40px; padding-inline: var(--space-5); border: none; border-radius: var(--radius); background: var(--primary); color: var(--primary-foreground); font-family: inherit; font-size: var(--text-sm); font-weight: 600; cursor: pointer;">حفظ</button><span class="mono" style="font-size: var(--text-xs); color: var(--muted-foreground);"><bdi>40px</bdi></span></div><div style="display: flex; align-items: center; gap: var(--space-4);"><code class="mono" style="width: 32px; font-size: var(--text-xs); color: var(--muted-foreground);">lg</code><button style="height: 48px; padding-inline: var(--space-5); border: none; border-radius: var(--radius); background: var(--primary); color: var(--primary-foreground); font-family: inherit; font-size: var(--text-sm); font-weight: 600; cursor: pointer;">حفظ</button><span class="mono" style="font-size: var(--text-xs); color: var(--muted-foreground);"><bdi>48px</bdi></span></div></div></section>
+    <section style="grid-column: span 1; background: var(--card); color: var(--card-foreground); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);"><div style="display: flex; flex-direction: column; gap: var(--space-1);"><h2 style="margin: 0; font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-weight: 600;">التحديد والتظليل حالان لا لونٌ واحد</h2><p style="margin: 0; font-size: var(--text-xs); line-height: var(--text-xs--line-height); color: var(--muted-foreground);">التحديد ما تحته الفأرة الآن ويزول برفع اليد، والتظليل علامةٌ يتركها القارئ. الصبغتان متباعدتان عمداً — أصفرُ القلم مقابل أزرقِ التحديد — والفرق بينهما لا يُحمَل بالإضاءة وحدها. وكلاهما مُعتِم: الشفّاف يتغيّر مركَّبه بتغيّر ما تحته فلا يُضمن تباين نصّه.</p></div><div style="display: flex; flex-direction: column; gap: var(--space-3); font-size: var(--text-base); line-height: var(--text-base--line-height);"><p style="margin: 0;">نصٌّ فيه <span style="background: var(--selection); color: var(--selection-foreground);">تحديدٌ عابر</span> يزول برفع اليد.</p><p style="margin: 0;">ونصٌّ فيه <span style="background: var(--highlight); color: var(--highlight-foreground);">تظليلٌ باقٍ</span> يبقى بعد إغلاق الصفحة.</p><p style="margin: 0; font-size: var(--text-sm); line-height: var(--text-sm--line-height); color: var(--muted-foreground);">حدّد بالفأرة أيّ نصٍّ في هذا اللوح لترى ‎::selection‎ نفسه عاملاً.</p></div></section>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"theme":{"editor":"enum","options":["الوضع الفاتح","الوضع الداكن"],"default":"الوضع الفاتح","section":"المظهر"},"direction":{"editor":"enum","options":["من اليمين لليسار","من اليسار لليمين"],"default":"من اليمين لليسار","section":"الاتجاه"},"$preview":{"width":1200,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = (this.props.theme ?? 'الوضع الفاتح') === 'الوضع الداكن';
+    const ltr  = (this.props.direction ?? 'من اليمين لليسار') === 'من اليسار لليمين';
+    return { mode: dark ? 'darkmode' : 'lightmode', dirAttr: ltr ? 'ltr' : 'rtl' };
+  }
+}
+</script>
+</body>
+</html>
