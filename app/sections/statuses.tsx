@@ -2,6 +2,7 @@ import {
   Archive,
   CalendarClock,
   CircleCheck,
+  CircleHelp,
   CircleX,
   Clock,
   FilePen,
@@ -12,6 +13,8 @@ import {
   Loader,
   MailCheck,
   MailX,
+  MessageSquareWarning,
+  NotepadTextDashed,
   Send,
   ShieldAlert,
   ShieldCheck,
@@ -59,9 +62,10 @@ const STATUSES = [
   },
 ]
 
-/* دورة حياة المحتوى — تسع حالات.
+/* دورة حياة المحتوى — اثنتا عشرة حالة، بترتيب جدولها في naf-icons.md.
    اللون يقول أي عائلة، والأيقونة والنص يقولان أيّها بالضبط. */
 const LIFECYCLE = [
+  { label: "فكرة", token: "muted-foreground", icon: NotepadTextDashed },
   { label: "مسودة", token: "muted-foreground", icon: FilePen },
   { label: "بانتظار المراجعة", token: "warning", icon: Clock },
   { label: "بانتظار الاعتماد", token: "warning", icon: UserCheck },
@@ -71,6 +75,8 @@ const LIFECYCLE = [
   { label: "منشور", token: "success", icon: Send },
   { label: "مؤرشف", token: "muted-foreground", icon: Archive },
   { label: "مرفوض", token: "destructive", icon: CircleX },
+  { label: "مطلوب تعديلات", token: "warning", icon: MessageSquareWarning },
+  { label: "بانتظار توضيح", token: "warning", icon: CircleHelp },
 ]
 
 const SOFT: Record<string, string> = {
@@ -141,7 +147,7 @@ export function StatusesSection() {
   return (
     <Section
       title="الحالات"
-      description="أربعة رموز حالة، وتسع حالات لدورة حياة المحتوى. لكل حالة أيقونة واحدة ثابتة في المنصات الخمس. لا تُوصَّل الحالة باللون وحده."
+      description="أربعة رموز حالة، واثنتا عشرة حالةً لدورة حياة المحتوى. لكل حالة أيقونة واحدة ثابتة في المنصات الخمس. لا تُوصَّل الحالة باللون وحده."
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {STATUSES.map((status) => {
